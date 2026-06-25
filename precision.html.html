@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Priya Mehta — Engineering Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#111;
+  --white:#fff;
+  --off:#f8f8f7;
+  --line:#e2e2e0;
+  --mid:#888;
+  --red:#e63027;
+  --font:'Archivo',sans-serif;
+  --col:calc((100% - 11 * 1.5rem) / 12);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--white);
+  color:var(--black);
+  font-family:var(--font);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── GRID OVERLAY (dev only, hidden in prod) ── */
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:var(--white);
+  border-bottom:1px solid var(--line);
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:1.5rem;
+  padding:0 3rem;
+  height:56px;
+}
+.nav-name{
+  grid-column:1/4;
+  display:flex;align-items:center;
+  font-size:0.82rem;font-weight:600;
+  letter-spacing:-0.01em;
+  text-decoration:none;color:var(--black);
+  border-right:1px solid var(--line);
+}
+.nav-center{
+  grid-column:4/10;
+  display:flex;align-items:center;justify-content:center;gap:0;
+}
+.nav-center a{
+  height:56px;line-height:56px;
+  padding:0 1.4rem;
+  font-size:0.75rem;font-weight:400;
+  color:var(--mid);text-decoration:none;
+  letter-spacing:0.02em;
+  transition:color 0.15s;
+  border-right:1px solid var(--line);
+}
+.nav-center a:first-child{border-left:1px solid var(--line)}
+.nav-center a:hover{color:var(--black)}
+.nav-right{
+  grid-column:10/13;
+  display:flex;align-items:center;justify-content:flex-end;
+  gap:1.5rem;
+  border-left:1px solid var(--line);
+  padding-left:1.5rem;
+}
+.nav-badge{
+  font-size:0.68rem;font-weight:500;
+  padding:0.25rem 0.65rem;
+  background:var(--red);color:var(--white);
+  letter-spacing:0.04em;
+}
+.nav-loc{font-size:0.72rem;color:var(--mid)}
+
+/* ── HERO ── */
+#hero{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:1.5rem;
+  padding:0 3rem;
+  border-bottom:1px solid var(--line);
+}
+.hero-col-left{
+  grid-column:1/5;
+  border-right:1px solid var(--line);
+  padding:3rem 0 3rem;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.hero-label{
+  font-size:0.65rem;font-weight:500;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--mid);margin-bottom:auto;
+}
+.hero-col-left h1{
+  font-size:clamp(3rem,5vw,5.5rem);
+  font-weight:900;letter-spacing:-0.04em;
+  line-height:0.92;margin-bottom:0;
+}
+.hero-col-left h1 .r{color:var(--red)}
+.hero-col-mid{
+  grid-column:5/9;
+  border-right:1px solid var(--line);
+  padding:3rem 2.5rem 3rem 2rem;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  gap:2.5rem;
+}
+.hero-col-mid p{
+  font-size:0.95rem;font-weight:300;
+  color:#444;line-height:1.85;
+}
+.hero-col-mid p strong{color:var(--black);font-weight:500}
+.hero-data{display:flex;flex-direction:column;gap:0}
+.data-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:0.65rem 0;
+  border-top:1px solid var(--line);
+  font-size:0.8rem;
+}
+.data-row:last-child{border-bottom:1px solid var(--line)}
+.data-key{color:var(--mid);font-weight:400}
+.data-val{font-weight:500}
+.hero-col-right{
+  grid-column:9/13;
+  padding:3rem 0 3rem 2rem;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.hero-col-right .big-num{
+  font-size:clamp(4rem,7vw,7rem);
+  font-weight:900;letter-spacing:-0.05em;
+  line-height:1;color:var(--line);
+}
+.hero-ticker{
+  display:flex;flex-direction:column;gap:0;
+}
+.ticker-item{
+  display:flex;align-items:center;gap:1rem;
+  padding:0.8rem 0;border-top:1px solid var(--line);
+  font-size:0.78rem;
+}
+.ticker-item:last-child{border-bottom:1px solid var(--line)}
+.t-num{color:var(--mid);font-size:0.65rem;min-width:20px}
+.t-text{font-weight:500}
+
+/* ── WORK ── */
+#work{
+  padding:4rem 3rem;
+  border-bottom:1px solid var(--line);
+}
+.work-grid-header{
+  display:grid;
+  grid-template-columns:50px 1fr 200px 140px 100px;
+  gap:0 2rem;
+  padding-bottom:0.75rem;
+  border-bottom:1px solid var(--line);
+  font-size:0.65rem;font-weight:500;
+  color:var(--mid);letter-spacing:0.12em;text-transform:uppercase;
+}
+.work-row{
+  display:grid;
+  grid-template-columns:50px 1fr 200px 140px 100px;
+  gap:0 2rem;
+  padding:1.5rem 0;
+  border-bottom:1px solid var(--line);
+  align-items:start;
+  cursor:pointer;
+  transition:background 0.15s;
+}
+.work-row:hover{background:var(--off);margin:0 -3rem;padding-left:3rem;padding-right:3rem}
+.w-n{font-size:0.7rem;color:var(--mid);font-weight:400;padding-top:0.2rem}
+.w-title h3{font-size:1rem;font-weight:600;letter-spacing:-0.01em;margin-bottom:0.4rem}
+.w-title p{font-size:0.8rem;color:var(--mid);line-height:1.6}
+.w-tags{display:flex;flex-direction:column;gap:0.4rem;padding-top:0.15rem}
+.w-tag{
+  font-size:0.68rem;color:var(--mid);
+  border:1px solid var(--line);
+  padding:0.18rem 0.5rem;display:inline-block;
+  width:fit-content;
+}
+.work-row:hover .w-tag{border-color:var(--black);color:var(--black)}
+.w-year{font-size:0.8rem;color:var(--mid);padding-top:0.2rem}
+.w-link{
+  font-size:0.75rem;color:var(--red);text-decoration:none;
+  font-weight:600;letter-spacing:0.04em;
+  padding-top:0.2rem;display:block;
+  opacity:0;transition:opacity 0.15s;
+}
+.work-row:hover .w-link{opacity:1}
+
+/* ── SPLIT SECTION ── */
+#split{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-bottom:1px solid var(--line);
+}
+.split-col{padding:4rem 3rem}
+.split-col:first-child{border-right:1px solid var(--line)}
+.split-col h2{
+  font-size:1.6rem;font-weight:700;
+  letter-spacing:-0.02em;margin-bottom:2rem;
+}
+.cv-row{
+  display:grid;grid-template-columns:120px 1fr;
+  gap:0 1.5rem;
+  padding:1.2rem 0;border-top:1px solid var(--line);
+}
+.cv-row:last-child{border-bottom:1px solid var(--line)}
+.cv-date{font-size:0.72rem;color:var(--mid);padding-top:0.2rem}
+.cv-content h4{font-size:0.9rem;font-weight:600;margin-bottom:0.2rem}
+.cv-content span{font-size:0.8rem;color:var(--mid)}
+.cv-content p{font-size:0.8rem;color:#555;line-height:1.7;margin-top:0.5rem}
+.writing-list{display:flex;flex-direction:column;gap:0}
+.writing-item{
+  padding:1.2rem 0;border-top:1px solid var(--line);
+  cursor:pointer;
+  transition:background 0.15s;
+}
+.writing-item:last-child{border-bottom:1px solid var(--line)}
+.writing-item:hover{background:var(--off);margin:0 -3rem;padding-left:3rem;padding-right:3rem}
+.wi-meta{font-size:0.68rem;color:var(--mid);margin-bottom:0.4rem}
+.wi-title{font-size:0.92rem;font-weight:600;letter-spacing:-0.01em}
+
+/* ── CONTACT ── */
+#contact{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:1.5rem;
+  padding:0 3rem;
+  border-bottom:1px solid var(--line);
+}
+.ct-col1{
+  grid-column:1/6;
+  padding:4rem 2rem 4rem 0;
+  border-right:1px solid var(--line);
+}
+.ct-col1 h2{
+  font-size:clamp(2.5rem,4vw,4rem);
+  font-weight:900;letter-spacing:-0.04em;
+  line-height:0.95;margin-bottom:2rem;
+}
+.ct-col1 h2 em{
+  font-style:italic;font-weight:300;
+  display:block;color:var(--mid);
+}
+.ct-col2{
+  grid-column:6/10;
+  padding:4rem 2rem;
+  display:flex;flex-direction:column;justify-content:space-between;
+  border-right:1px solid var(--line);
+}
+.ct-col2 p{font-size:0.88rem;color:#555;line-height:1.85}
+.ct-email{
+  display:block;
+  font-size:1.1rem;font-weight:700;
+  color:var(--black);text-decoration:none;
+  border-bottom:2px solid var(--black);
+  padding-bottom:0.3rem;
+  width:fit-content;
+  transition:color 0.2s,border-color 0.2s;
+}
+.ct-email:hover{color:var(--red);border-color:var(--red)}
+.ct-col3{
+  grid-column:10/13;
+  padding:4rem 0 4rem 2rem;
+  display:flex;flex-direction:column;gap:0;justify-content:flex-start;
+  padding-top:4rem;
+}
+.ct-social{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 0;border-top:1px solid var(--line);
+  text-decoration:none;color:var(--black);
+  font-size:0.82rem;font-weight:500;
+  transition:color 0.15s;
+}
+.ct-social:last-child{border-bottom:1px solid var(--line)}
+.ct-social:hover{color:var(--red)}
+.ct-social::after{content:'↗';font-size:0.75rem;color:var(--mid)}
+
+/* ── FOOTER ── */
+footer{
+  padding:1.2rem 3rem;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:1.5rem;
+  font-size:0.68rem;color:var(--mid);
+  border-bottom:none;
+}
+footer > *:first-child{grid-column:1/4}
+footer > *:nth-child(2){grid-column:4/9;text-align:center}
+footer > *:last-child{grid-column:9/13;text-align:right}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  nav{grid-template-columns:1fr;padding:0 1.5rem;height:auto}
+  .nav-name{border-right:none;height:52px;grid-column:1/-1}
+  .nav-center,.nav-right{display:none}
+  #hero{grid-template-columns:1fr;padding:0 1.5rem;gap:0}
+  .hero-col-left,.hero-col-mid,.hero-col-right{
+    grid-column:1/-1;border:none;padding:2rem 0;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-col-right .big-num{display:none}
+  #work{padding:3rem 1.5rem}
+  .work-grid-header,.work-row{grid-template-columns:40px 1fr 100px}
+  .w-tags,.w-link{display:none}
+  .work-row:hover{margin:0;padding-left:0;padding-right:0}
+  #split{grid-template-columns:1fr}
+  .split-col:first-child{border-right:none;border-bottom:1px solid var(--line)}
+  .split-col{padding:3rem 1.5rem}
+  #contact{grid-template-columns:1fr;padding:0 1.5rem}
+  .ct-col1,.ct-col2,.ct-col3{grid-column:1/-1;border:none;padding:2rem 0;border-bottom:1px solid var(--line)}
+  footer{grid-template-columns:1fr;padding:1.2rem 1.5rem;text-align:center}
+  footer > *{grid-column:1/-1;text-align:center !important}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-name">Priya Mehta</a>
+  <div class="nav-center">
+    <a href="#work">Work</a>
+    <a href="#split">Experience</a>
+    <a href="#split">Writing</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <span class="nav-badge">Open to roles</span>
+    <span class="nav-loc">London · Remote</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-col-left reveal">
+    <div class="hero-label">Engineering Manager · Platform</div>
+    <h1>Pri<span class="r">—</span><br>ya<br>Meh<span class="r">—</span><br>ta</h1>
+  </div>
+  <div class="hero-col-mid reveal">
+    <p>I lead engineering teams that build the <strong>infrastructure, tooling, and platforms</strong> other engineers rely on every day. 9 years in tech, last 4 in management — scaling teams from 6 to 40 across two hypergrowth companies.</p>
+    <div class="hero-data">
+      <div class="data-row"><span class="data-key">Currently</span><span class="data-val">Staff EM, Monzo</span></div>
+      <div class="data-row"><span class="data-key">Previously</span><span class="data-val">Revolut · Deliveroo</span></div>
+      <div class="data-row"><span class="data-key">Education</span><span class="data-val">Imperial College, CS</span></div>
+      <div class="data-row"><span class="data-key">Looking for</span><span class="data-val">Director / VP Engineering</span></div>
+      <div class="data-row"><span class="data-key">Available</span><span class="data-val" style="color:var(--red)">Oct 2024</span></div>
+    </div>
+  </div>
+  <div class="hero-col-right reveal">
+    <div class="big-num">09</div>
+    <div class="hero-ticker">
+      <div class="ticker-item"><span class="t-num">→</span><span class="t-text">40+ engineers managed</span></div>
+      <div class="ticker-item"><span class="t-num">→</span><span class="t-text">4 teams built from zero</span></div>
+      <div class="ticker-item"><span class="t-num">→</span><span class="t-text">3 platform migrations led</span></div>
+      <div class="ticker-item"><span class="t-num">→</span><span class="t-text">2 companies to Series C+</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="work-grid-header">
+    <span>#</span>
+    <span>Project / Initiative</span>
+    <span>Discipline</span>
+    <span>Year</span>
+    <span></span>
+  </div>
+
+  <div class="work-row reveal">
+    <div class="w-n">01</div>
+    <div class="w-title">
+      <h3>Internal Developer Platform — Monzo</h3>
+      <p>Led the 0→1 build of an IDP serving 300+ engineers. Standardised service creation, deployment, and observability across 180 microservices. Reduced new service setup from 3 days to 2 hours.</p>
+    </div>
+    <div class="w-tags">
+      <span class="w-tag">Platform Eng</span>
+      <span class="w-tag">Team Building</span>
+    </div>
+    <div class="w-year">2023 — 2024</div>
+    <a href="#" class="w-link">Read more →</a>
+  </div>
+
+  <div class="work-row reveal">
+    <div class="w-n">02</div>
+    <div class="w-title">
+      <h3>Payments Infrastructure Scaling — Revolut</h3>
+      <p>Managed a cross-functional team of 14 through the scaling of Revolut's core payment rails from 3M to 25M monthly active users. Zero critical incidents during 5× growth.</p>
+    </div>
+    <div class="w-tags">
+      <span class="w-tag">Infra</span>
+      <span class="w-tag">Scaling</span>
+    </div>
+    <div class="w-year">2021 — 2022</div>
+    <a href="#" class="w-link">Read more →</a>
+  </div>
+
+  <div class="work-row reveal">
+    <div class="w-n">03</div>
+    <div class="w-title">
+      <h3>Engineering Hiring Programme — Revolut</h3>
+      <p>Rebuilt the backend engineering interview process, reducing time-to-offer from 6 weeks to 18 days. Hired 80 engineers in 12 months across 5 countries.</p>
+    </div>
+    <div class="w-tags">
+      <span class="w-tag">Org Design</span>
+      <span class="w-tag">Hiring</span>
+    </div>
+    <div class="w-year">2020 — 2021</div>
+    <a href="#" class="w-link">Read more →</a>
+  </div>
+
+  <div class="work-row reveal">
+    <div class="w-n">04</div>
+    <div class="w-title">
+      <h3>Logistics Platform Rewrite — Deliveroo</h3>
+      <p>Technical lead and later manager on a 2-year rewrite of the core dispatch algorithm and order-routing platform, improving on-time delivery from 71% to 89%.</p>
+    </div>
+    <div class="w-tags">
+      <span class="w-tag">Technical</span>
+      <span class="w-tag">Leadership</span>
+    </div>
+    <div class="w-year">2018 — 2020</div>
+    <a href="#" class="w-link">Read more →</a>
+  </div>
+
+</section>
+
+<!-- SPLIT: EXPERIENCE + WRITING -->
+<section id="split">
+  <div class="split-col">
+    <h2>Experience</h2>
+    <div class="cv-row reveal">
+      <div class="cv-date">2022 – now</div>
+      <div class="cv-content">
+        <h4>Staff Engineering Manager</h4>
+        <span>Monzo · London</span>
+        <p>Platform Engineering. Built and led the IDP team, grew org from 8 to 22 engineers.</p>
+      </div>
+    </div>
+    <div class="cv-row reveal">
+      <div class="cv-date">2019 – 2022</div>
+      <div class="cv-content">
+        <h4>Senior Engineering Manager</h4>
+        <span>Revolut · London</span>
+        <p>Payments Infrastructure. Led 3 teams through hyper-growth, 3M → 25M MAU.</p>
+      </div>
+    </div>
+    <div class="cv-row reveal">
+      <div class="cv-date">2016 – 2019</div>
+      <div class="cv-content">
+        <h4>Tech Lead → Engineering Manager</h4>
+        <span>Deliveroo · London</span>
+        <p>Logistics Platform. IC to manager transition; led dispatch algorithm rewrite.</p>
+      </div>
+    </div>
+    <div class="cv-row reveal">
+      <div class="cv-date">2015 – 2016</div>
+      <div class="cv-content">
+        <h4>Software Engineer</h4>
+        <span>Goldman Sachs · London</span>
+        <p>Fixed income trading infrastructure, Java/Scala.</p>
+      </div>
+    </div>
+  </div>
+  <div class="split-col">
+    <h2>Writing</h2>
+    <div class="writing-list">
+      <div class="writing-item reveal">
+        <div class="wi-meta">May 2024 · 8 min read</div>
+        <div class="wi-title">What nobody tells you about your first 100 engineers</div>
+      </div>
+      <div class="writing-item reveal">
+        <div class="wi-meta">Feb 2024 · 12 min read</div>
+        <div class="wi-title">How we built Monzo's IDP without a dedicated platform team for the first year</div>
+      </div>
+      <div class="writing-item reveal">
+        <div class="wi-meta">Nov 2023 · 6 min read</div>
+        <div class="wi-title">The interview process is a product. Treat it like one.</div>
+      </div>
+      <div class="writing-item reveal">
+        <div class="wi-meta">Aug 2023 · 10 min read</div>
+        <div class="wi-title">On measuring engineering productivity without gaming it</div>
+      </div>
+      <div class="writing-item reveal">
+        <div class="wi-meta">Apr 2023 · 7 min read</div>
+        <div class="wi-title">Scaling a payments team through a 10× growth period</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="ct-col1 reveal">
+    <h2>Let's<br>talk.<br><em>Seriously.</em></h2>
+    <p style="font-size:0.82rem;color:var(--mid)">No recruiters please — direct only.</p>
+  </div>
+  <div class="ct-col2 reveal">
+    <p>I'm exploring Director and VP Engineering roles at companies where the engineering org is the product. If that's you, I'd like to hear about what you're building and where the team needs to grow.</p>
+    <a href="mailto:priya@example.com" class="ct-email">priya@example.com</a>
+  </div>
+  <div class="ct-col3 reveal">
+    <a href="#" class="ct-social">LinkedIn</a>
+    <a href="#" class="ct-social">Twitter / X</a>
+    <a href="#" class="ct-social">GitHub</a>
+    <a href="#" class="ct-social">Read.cv</a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2024 Priya Mehta</span>
+  <span>London, United Kingdom</span>
+  <span>Last updated June 2024</span>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), i * 40);
+    }
+  });
+}, { threshold: 0.05 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
