@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BaysaTech — Free Portfolio Templates</title>
+<meta name="description" content="6 free production-quality portfolio templates by BaysaTech. Single HTML files. No frameworks. Download and deploy in minutes.">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=Manrope:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --ink:#111010;
+  --ink2:#2d2b2b;
+  --dust:#f7f4ef;
+  --dust2:#eeebe4;
+  --wire:#dddad4;
+  --ghost:#999490;
+  --red:#d4380d;
+  --blue:#1d4ed8;
+  --head:'Fraunces',Georgia,serif;
+  --body:'Manrope',system-ui,sans-serif;
+  --code:'Fira Code',monospace;
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--dust);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:15px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:var(--ink);
+  padding:0 3rem;
+  height:52px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-left{
+  display:flex;align-items:center;gap:2.5rem;
+}
+.brand{
+  font-family:var(--head);
+  font-size:1.15rem;
+  font-weight:700;
+  font-style:italic;
+  color:#fff;
+  text-decoration:none;
+  letter-spacing:-0.01em;
+}
+.brand sup{
+  font-style:normal;
+  font-size:0.55rem;
+  font-family:var(--code);
+  color:var(--red);
+  vertical-align:super;
+  margin-left:2px;
+  letter-spacing:0.05em;
+}
+.nav-pill{
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:100px;
+  padding:0.25rem 0.8rem;
+  font-size:0.68rem;
+  color:rgba(255,255,255,0.45);
+  font-family:var(--code);
+  letter-spacing:0.06em;
+}
+.nav-right{display:flex;gap:2rem;align-items:center}
+.nav-right a{
+  font-size:0.75rem;
+  color:rgba(255,255,255,0.45);
+  text-decoration:none;
+  letter-spacing:0.03em;
+  transition:color 0.15s;
+}
+.nav-right a:hover{color:#fff}
+.nav-gh{
+  display:flex;align-items:center;gap:0.4rem;
+  padding:0.35rem 0.9rem;
+  background:rgba(255,255,255,0.1);
+  border-radius:4px;
+  font-size:0.72rem;
+  color:#fff !important;
+  transition:background 0.2s !important;
+}
+.nav-gh:hover{background:rgba(255,255,255,0.18) !important}
+.nav-gh svg{width:13px;height:13px;flex-shrink:0}
+
+/* ── MASTHEAD ── */
+#masthead{
+  border-bottom:1px solid var(--wire);
+}
+.mast-inner{
+  max-width:1320px;margin:0 auto;
+  padding:5rem 3rem 0;
+  display:grid;
+  grid-template-columns:5fr 3fr;
+  gap:0;
+  align-items:end;
+}
+.mast-left{
+  border-right:1px solid var(--wire);
+  padding-right:4rem;
+  padding-bottom:3.5rem;
+}
+.mast-kicker{
+  display:flex;align-items:center;gap:0.75rem;
+  margin-bottom:2rem;
+}
+.kicker-rule{width:32px;height:1px;background:var(--red)}
+.kicker-text{
+  font-family:var(--code);
+  font-size:0.68rem;
+  color:var(--red);
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+}
+.mast-left h1{
+  font-family:var(--head);
+  font-size:clamp(3.8rem,7vw,7.5rem);
+  font-weight:900;
+  line-height:0.9;
+  letter-spacing:-0.04em;
+  margin-bottom:2rem;
+  color:var(--ink);
+}
+.mast-left h1 em{
+  font-style:italic;
+  font-weight:300;
+  color:var(--ghost);
+  display:block;
+}
+.mast-left h1 .red{color:var(--red)}
+.mast-desc{
+  font-size:1rem;
+  font-weight:300;
+  color:var(--ink2);
+  line-height:1.85;
+  max-width:500px;
+  margin-bottom:2.5rem;
+}
+.mast-desc strong{font-weight:600;color:var(--ink)}
+.mast-actions{display:flex;gap:0.75rem;flex-wrap:wrap}
+.btn-dark{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.75rem 1.5rem;
+  background:var(--ink);color:#fff;
+  font-size:0.8rem;font-weight:600;
+  letter-spacing:0.02em;
+  text-decoration:none;
+  transition:background 0.2s,transform 0.2s;
+}
+.btn-dark:hover{background:var(--ink2);transform:translateY(-2px)}
+.btn-wire{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.75rem 1.5rem;
+  background:transparent;color:var(--ink);
+  border:1px solid var(--wire);
+  font-size:0.8rem;font-weight:500;
+  letter-spacing:0.02em;
+  text-decoration:none;
+  transition:border-color 0.2s,transform 0.2s;
+}
+.btn-wire:hover{border-color:var(--ink);transform:translateY(-2px)}
+
+.mast-right{
+  padding-left:3rem;
+  padding-bottom:3.5rem;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  gap:0;
+}
+.mast-stat{
+  padding:0.9rem 0;
+  border-top:1px solid var(--wire);
+  display:flex;justify-content:space-between;align-items:baseline;
+}
+.mast-stat:last-child{border-bottom:1px solid var(--wire)}
+.ms-label{font-size:0.72rem;color:var(--ghost);letter-spacing:0.03em}
+.ms-val{
+  font-family:var(--head);
+  font-size:1.1rem;
+  font-weight:700;
+  letter-spacing:-0.02em;
+}
+.ms-val.accent{color:var(--red)}
+.ms-val.blue{color:var(--blue)}
+
+/* ── TICKER ── */
+.ticker-bar{
+  background:var(--ink2);
+  overflow:hidden;
+  padding:0.7rem 0;
+  border-bottom:1px solid var(--wire);
+}
+.ticker-track{
+  display:flex;gap:0;
+  white-space:nowrap;
+  animation:tick 24s linear infinite;
+  width:max-content;
+}
+.ticker-track span{
+  font-family:var(--code);
+  font-size:0.65rem;
+  color:rgba(255,255,255,0.35);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  padding:0 2.5rem;
+  border-right:1px solid rgba(255,255,255,0.08);
+}
+.ticker-track span.hi{color:var(--red);opacity:0.9}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── TEMPLATES ── */
+#templates{
+  max-width:1320px;margin:0 auto;
+  padding:4rem 3rem;
+}
+.grid-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:end;
+  gap:1rem;
+  margin-bottom:2.5rem;
+  padding-bottom:1.2rem;
+  border-bottom:1px solid var(--wire);
+}
+.grid-head h2{
+  font-family:var(--head);
+  font-size:2rem;
+  font-weight:700;
+  letter-spacing:-0.03em;
+  line-height:1;
+}
+.grid-head p{
+  font-size:0.75rem;
+  color:var(--ghost);
+  text-align:right;
+  line-height:1.5;
+}
+
+/* ── TEMPLATE CARDS ── */
+/* Mixed grid: 2 wide + 1 feature row */
+.tgrid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:1px;
+  background:var(--wire);
+  border:1px solid var(--wire);
+}
+.tcard{
+  background:var(--dust);
+  display:flex;flex-direction:column;
+  transition:background 0.2s;
+  position:relative;
+}
+.tcard:hover{background:#fff}
+.tcard.wide{grid-column:span 2}
+
+/* thumbnail */
+.thumb{
+  height:200px;
+  overflow:hidden;
+  position:relative;
+  border-bottom:1px solid var(--wire);
+  flex-shrink:0;
+}
+.tcard.wide .thumb{height:260px}
+.thumb-inner{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.tcard:hover .thumb-inner{transform:scale(1.03)}
+
+/* thumbnail scenes — each unique */
+.t-orbital{background:#050b18}
+.t-editorial{background:#f5f2eb}
+.t-terminal{background:#0e0e0e}
+.t-studio{background:#0a0a0a}
+.t-precision{background:#f8f8f7}
+.t-freelance{background:linear-gradient(135deg,#0f172a,#1e1b4b)}
+
+/* scene sketches using pure CSS shapes */
+.scene{width:85%;height:78%;position:relative}
+
+/* orbital scene */
+.orb-ring{
+  position:absolute;border:1px solid rgba(79,142,247,0.25);
+  border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);
+}
+.orb-dot{
+  position:absolute;width:5px;height:5px;border-radius:50%;
+  background:#4f8ef7;top:-2.5px;left:50%;transform:translateX(-50%);
+}
+.orb-core{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,#4f8ef7,#7c3aed);
+}
+.orb-text{
+  position:absolute;bottom:0;left:0;right:0;
+  font-family:var(--code);font-size:0.55rem;
+  color:rgba(79,142,247,0.6);letter-spacing:0.1em;
+}
+
+/* editorial scene */
+.ed-line{height:1px;background:rgba(26,23,20,0.12);margin-bottom:0.6rem}
+.ed-h1{height:22px;background:rgba(26,23,20,0.75);border-radius:1px;margin-bottom:0.4rem}
+.ed-h2{height:16px;background:rgba(192,57,43,0.7);border-radius:1px;width:60%;margin-bottom:0.8rem}
+.ed-p{height:5px;background:rgba(26,23,20,0.12);border-radius:1px;margin-bottom:0.3rem}
+.ed-tag{
+  display:inline-block;height:14px;width:50px;
+  border:1px solid rgba(26,23,20,0.15);border-radius:100px;
+  margin-right:0.3rem;margin-top:0.5rem;
+}
+
+/* terminal scene */
+.tm-row{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem}
+.tm-arrow{color:#22c55e;font-family:var(--code);font-size:0.6rem}
+.tm-cmd{height:6px;border-radius:1px;background:#22c55e}
+.tm-out{height:5px;border-radius:1px;background:rgba(156,163,175,0.35)}
+.tm-cursor{width:6px;height:11px;background:#22c55e;animation:blink2 1s step-end infinite}
+@keyframes blink2{0%,100%{opacity:1}50%{opacity:0}}
+
+/* studio scene */
+.st-big{
+  font-family:var(--head);
+  font-size:3.5rem;font-weight:900;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(255,255,255,0.15);
+  letter-spacing:-0.05em;line-height:1;
+  margin-bottom:0.5rem;
+}
+.st-sub{height:6px;background:rgba(255,255,255,0.12);border-radius:1px;margin-bottom:0.3rem}
+.st-btn{
+  height:22px;width:90px;
+  background:#ff3c00;
+  margin-top:0.6rem;
+}
+
+/* precision scene */
+.pr-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:0.5rem;height:100%}
+.pr-left{border-right:1px solid rgba(17,17,17,0.1);padding-right:0.5rem;display:flex;flex-direction:column;gap:0.35rem;justify-content:center}
+.pr-right{display:flex;flex-direction:column;gap:0.35rem;justify-content:center}
+.pr-h{height:18px;border-radius:1px}
+.pr-p{height:5px;border-radius:1px;background:rgba(17,17,17,0.1)}
+
+/* freelance scene */
+.fl-badge{
+  font-family:var(--code);font-size:0.5rem;
+  color:rgba(165,180,252,0.7);letter-spacing:0.12em;text-transform:uppercase;
+  margin-bottom:0.8rem;display:flex;align-items:center;gap:0.4rem;
+}
+.fl-badge::before{content:'';width:20px;height:1px;background:rgba(165,180,252,0.4)}
+.fl-h1{
+  font-family:var(--head);
+  font-size:2.2rem;font-weight:900;
+  color:rgba(255,255,255,0.9);
+  line-height:0.95;letter-spacing:-0.04em;
+  margin-bottom:0.6rem;
+}
+.fl-h1 em{font-style:italic;font-weight:300;color:rgba(165,180,252,0.7)}
+.fl-sub{height:5px;background:rgba(255,255,255,0.1);border-radius:1px;margin-bottom:0.25rem}
+.fl-ctas{display:flex;gap:0.4rem;margin-top:0.7rem}
+.fl-c1{height:22px;width:70px;background:rgba(99,102,241,0.8);border-radius:2px}
+.fl-c2{height:22px;width:60px;border:1px solid rgba(255,255,255,0.2);border-radius:2px}
+
+/* card body */
+.tcard-body{
+  padding:1.5rem 1.6rem 1.8rem;
+  display:flex;flex-direction:column;
+  flex:1;
+}
+.tcard-top{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  margin-bottom:0.4rem;
+}
+.tcard-name{
+  font-family:var(--head);
+  font-size:1.2rem;font-weight:700;
+  letter-spacing:-0.02em;line-height:1;
+}
+.tcard-idx{
+  font-family:var(--code);font-size:0.62rem;
+  color:var(--ghost);margin-top:0.1rem;
+}
+.tcard-for{
+  font-size:0.7rem;color:var(--ghost);
+  margin-bottom:0.6rem;letter-spacing:0.02em;
+}
+.tcard-desc{
+  font-size:0.8rem;color:var(--ink2);
+  line-height:1.7;margin-bottom:1rem;flex:1;
+  font-weight:300;
+}
+.tcard-tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:1.2rem}
+.ttag{
+  font-family:var(--code);font-size:0.6rem;
+  color:var(--ghost);
+  border:1px solid var(--wire);
+  padding:0.18rem 0.45rem;
+  letter-spacing:0.04em;
+}
+.tcard-actions{
+  display:grid;grid-template-columns:1fr auto;
+  gap:0.5rem;margin-top:auto;
+}
+.t-prev{
+  display:flex;align-items:center;justify-content:center;
+  padding:0.6rem;
+  background:var(--ink);color:#fff;
+  font-size:0.75rem;font-weight:600;
+  text-decoration:none;letter-spacing:0.02em;
+  transition:background 0.2s;
+}
+.t-prev:hover{background:var(--red)}
+.t-dl{
+  display:flex;align-items:center;justify-content:center;
+  padding:0.6rem 0.9rem;
+  border:1px solid var(--wire);
+  color:var(--ink);font-size:0.72rem;font-weight:500;
+  text-decoration:none;
+  transition:border-color 0.2s,background 0.2s;
+  white-space:nowrap;
+}
+.t-dl:hover{border-color:var(--ink);background:var(--dust2)}
+
+/* ── HOWTO ── */
+#howto{
+  border-top:1px solid var(--wire);
+  background:var(--ink);
+  padding:4rem 3rem;
+}
+.howto-inner{max-width:1320px;margin:0 auto}
+.howto-head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:2.5rem;
+}
+.howto-head h2{
+  font-family:var(--head);
+  font-size:1.8rem;font-weight:700;
+  letter-spacing:-0.03em;color:#fff;
+  font-style:italic;
+}
+.howto-head p{font-size:0.75rem;color:rgba(255,255,255,0.3)}
+.steps{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;
+}
+.step{
+  padding:2rem 1.8rem;
+  border-right:1px solid rgba(255,255,255,0.07);
+}
+.step:last-child{border-right:none}
+.step-n{
+  font-family:var(--code);
+  font-size:0.62rem;color:var(--red);
+  letter-spacing:0.15em;margin-bottom:1.2rem;display:block;
+}
+.step h3{
+  font-family:var(--head);
+  font-size:1rem;font-weight:700;
+  color:#fff;margin-bottom:0.5rem;
+  font-style:italic;
+}
+.step p{font-size:0.78rem;color:rgba(255,255,255,0.4);line-height:1.7;font-weight:300}
+.step code{
+  font-family:var(--code);font-size:0.7rem;
+  background:rgba(255,255,255,0.07);
+  padding:0.1rem 0.35rem;border-radius:2px;
+  color:rgba(255,255,255,0.6);
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);
+  border-top:1px solid rgba(255,255,255,0.06);
+  padding:1.5rem 3rem;
+  max-width:100%;
+}
+.foot-inner{
+  max-width:1320px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1rem;
+}
+.foot-brand{
+  font-family:var(--head);font-style:italic;
+  font-size:1rem;color:#fff;font-weight:700;
+}
+.foot-brand span{font-size:0.68rem;font-style:normal;color:rgba(255,255,255,0.3);margin-left:0.5rem;font-family:var(--code)}
+.foot-links{display:flex;gap:2rem}
+.foot-links a{
+  font-size:0.7rem;color:rgba(255,255,255,0.3);
+  text-decoration:none;letter-spacing:0.05em;
+  transition:color 0.15s;
+}
+.foot-links a:hover{color:#fff}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity 0.55s ease,transform 0.55s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ── MOBILE ── */
+@media(max-width:960px){
+  nav{padding:0 1.2rem}
+  .nav-right a:not(.nav-gh){display:none}
+  .nav-pill{display:none}
+  .mast-inner{grid-template-columns:1fr;padding:3rem 1.5rem 0}
+  .mast-left{border-right:none;padding-right:0;padding-bottom:2rem}
+  .mast-right{padding-left:0;border-top:1px solid var(--wire);padding-top:2rem;padding-bottom:2rem}
+  #templates{padding:2.5rem 1.2rem}
+  .tgrid{grid-template-columns:1fr}
+  .tcard.wide{grid-column:span 1}
+  .tcard.wide .thumb{height:200px}
+  #howto{padding:3rem 1.2rem}
+  .steps{grid-template-columns:1fr 1fr}
+  .step{border-right:none;border-bottom:1px solid rgba(255,255,255,0.07);padding:1.5rem}
+  footer{padding:1.5rem 1.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <a href="#" class="brand">BaysaTech<sup>®</sup></a>
+    <div class="nav-pill">v1.0 · 6 templates</div>
+  </div>
+  <div class="nav-right">
+    <a href="#templates">Templates</a>
+    <a href="#howto">How to use</a>
+    <a href="https://github.com/statisticsage/Baysahtech-portfolio-templates" target="_blank" class="nav-gh">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<!-- MASTHEAD -->
+<header id="masthead">
+  <div class="mast-inner">
+    <div class="mast-left reveal">
+      <div class="mast-kicker">
+        <div class="kicker-rule"></div>
+        <div class="kicker-text">Free · Open Source · MIT License</div>
+      </div>
+      <h1>
+        Portfolio<br>
+        <em>templates</em><br>
+        that <span class="red">ship.</span>
+      </h1>
+      <p class="mast-desc">
+        Six <strong>production-quality</strong> portfolio templates for developers, designers, and tech professionals. Each one is a single HTML file — <strong>no npm, no webpack, no nonsense.</strong> Download, edit your name, go live.
+      </p>
+      <div class="mast-actions">
+        <a href="#templates" class="btn-dark">Browse Templates ↓</a>
+        <a href="https://github.com/statisticsage/Baysahtech-portfolio-templates" target="_blank" class="btn-wire">View on GitHub →</a>
+      </div>
+    </div>
+    <div class="mast-right reveal">
+      <div class="mast-stat">
+        <span class="ms-label">Templates</span>
+        <span class="ms-val accent">6 ready</span>
+      </div>
+      <div class="mast-stat">
+        <span class="ms-label">Frameworks required</span>
+        <span class="ms-val">Zero</span>
+      </div>
+      <div class="mast-stat">
+        <span class="ms-label">Install steps</span>
+        <span class="ms-val">None</span>
+      </div>
+      <div class="mast-stat">
+        <span class="ms-label">License</span>
+        <span class="ms-val blue">MIT</span>
+      </div>
+      <div class="mast-stat">
+        <span class="ms-label">Made by</span>
+        <span class="ms-val">BaysaTech</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-track">
+    <span class="hi">BaysaTech</span><span>Orbital</span><span>Editorial</span><span>Terminal</span><span>Studio</span><span>Precision</span><span>Freelance Platform</span><span>Single HTML File</span><span>Zero Dependencies</span><span>MIT License</span><span>Free Forever</span><span>GitHub Pages Ready</span>
+    <span class="hi">BaysaTech</span><span>Orbital</span><span>Editorial</span><span>Terminal</span><span>Studio</span><span>Precision</span><span>Freelance Platform</span><span>Single HTML File</span><span>Zero Dependencies</span><span>MIT License</span><span>Free Forever</span><span>GitHub Pages Ready</span>
+  </div>
+</div>
+
+<!-- TEMPLATES -->
+<section id="templates">
+  <div class="grid-head reveal">
+    <h2>All Templates</h2>
+    <p>Live Preview opens the full template in a new tab.<br>Download goes straight to the raw file on GitHub.</p>
+  </div>
+
+  <div class="tgrid">
+
+    <!-- ORBITAL — wide -->
+    <div class="tcard wide reveal">
+      <div class="thumb t-orbital">
+        <div class="thumb-inner">
+          <div class="scene" style="position:relative">
+            <div class="orb-ring" style="width:160px;height:160px"></div>
+            <div class="orb-ring" style="width:110px;height:110px;border-color:rgba(124,58,237,0.3);animation:none"></div>
+            <div class="orb-ring" style="width:65px;height:65px;border-color:rgba(79,142,247,0.5);animation:none"></div>
+            <div class="orb-core"></div>
+            <div class="orb-text" style="font-size:0.5rem;color:rgba(79,142,247,0.4);text-align:center;position:absolute;bottom:0;left:0;right:0;font-family:monospace">ORBITAL · BAYSATECH</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard-body">
+        <div class="tcard-top">
+          <div class="tcard-name">Orbital</div>
+          <div class="tcard-idx">01/06</div>
+        </div>
+        <div class="tcard-for">Developers & Software Engineers</div>
+        <p class="tcard-desc">Dark space theme with animated star field canvas, spinning orbit rings, and a custom dual-layer cursor. One signature animation running at all times — the rest of the layout stays controlled and professional. Scroll reveals on every section.</p>
+        <div class="tcard-tags">
+          <span class="ttag">dark</span><span class="ttag">animated</span><span class="ttag">space</span><span class="ttag">developer</span>
+        </div>
+        <div class="tcard-actions">
+          <a href="https://statisticsage.github.io/Baysahtech-portfolio-templates/orbital.html" target="_blank" class="t-prev">Live Preview →</a>
+          <a href="https://github.com/statisticsage/Baysahtech-portfolio-templates/blob/main/orbital.html" target="_blank" class="t-dl">↓ Download</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDITORIAL -->
+    <div class="tcard reveal">
+      <div class="thumb t-editorial">
+        <div class="thumb-inner" style="padding:1.5rem;align-items:flex-start;flex-direction:column;justify-content:center">
+          <div class="ed-line"></div>
+          <div class="ed-h1" style="width:80%"></div>
+          <div class="ed-h2"></div>
+          <div class="ed-p" style="width:90%"></div>
+          <div class="ed-p" style="width:75%"></div>
+          <div class="ed-p" style="width:82%"></div>
+          <div>
+            <span class="ed-tag"></span>
+            <span class="ed-tag"></span>
+            <span class="ed-tag"></span>
+          </div>
+        </div>
+      </div>
+      <div class="tcard-body">
+        <div class="tcard-top">
+          <div class="tcard-name">Editorial</div>
+          <div class="tcard-idx">02/06</div>
+        </div>
+        <div class="tcard-for">Product Designers</div>
+        <p class="tcard-desc">Off-white magazine layout. Big Playfair Display serif, ink-red accents, projects as scannable editorial rows. Cursor swells into a reading circle on text hover.</p>
+        <div class="tcard-tags">
+          <span class="ttag">light</span><span class="ttag">serif</span><span class="ttag">editorial</span><span class="ttag">designer</span>
+        </div>
+        <div class="tcard-actions">
+          <a href="https://statisticsage.github.io/Baysahtech-portfolio-templates/editorial.html" target="_blank" class="t-prev">Live Preview →</a>
+          <a href="https://github.com/statisticsage/Baysahtech-portfolio-templates/blob/main/editorial.html" target="_blank" class="t-dl">↓ Download</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TERMINAL -->
+    <div class="tcard reveal">
+      <div class="thumb t-terminal">
+        <div class="thumb-inner" style="padding:1.5rem;align-items:flex-start;flex-direction:column;justify-content:center">
+          <div class="tm-row"><span class="tm-arrow">❯</span><div class="tm-cmd" style="width:80px"></div></div>
+          <div class="tm-row" style="margin-left:1rem"><div class="tm-out" style="width:130px"></div></div>
+          <div class="tm-row" style="margin-left:1rem"><div class="tm-out" style="width:100px"></div></div>
+          <div style="height:0.5rem"></div>
+          <div class="tm-row"><span class="tm-arrow">❯</span><div class="tm-cmd" style="width:60px"></div></div>
+          <div class="tm-row" style="margin-left:1rem"><div class="tm-out" style="width:150px"></div></div>
+          <div class="tm-row" style="margin-left:1rem"><div class="tm-out" style="width:110px"></div></div>
+          <div style="height:0.5rem"></div>
+          <div class="tm-row"><span class="tm-arrow">❯</span><div class="tm-cursor"></div></div>
+        </div>
+      </div>
+      <div class="tcard-body">
+        <div class="tcard-top">
+          <div class="tcard-name">Terminal</div>
+          <div class="tcard-idx">03/06</div>
+        </div>
+        <div class="tcard-for">Systems & Backend Engineers</div>
+        <p class="tcard-desc">Pure monospace CLI aesthetic. Shell prompt nav, repos-style project cards, skill bars that animate on scroll. Green on black — nothing else.</p>
+        <div class="tcard-tags">
+          <span class="ttag">dark</span><span class="ttag">monospace</span><span class="ttag">cli</span><span class="ttag">backend</span>
+        </div>
+        <div class="tcard-actions">
+          <a href="https://statisticsage.github.io/Baysahtech-portfolio-templates/terminal.html" target="_blank" class="t-prev">Live Preview →</a>
+          <a href="https://github.com/statisticsage/Baysahtech-portfolio-templates/blob/main/terminal.html" target="_blank" class="t-dl">↓ Download</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FREELANCE PLATFORM — wide -->
+    <div class="tcard wide reveal">
+      <div class="thumb t-freelance">
+        <div class="thumb-inner" style="padding:2rem 2.5rem;align-items:flex-start;flex-direction:column;justify-content:center">
+          <div class="fl-badge">Available for projects</div>
+          <div class="fl-h1">Your<br><em>Work Here</em></div>
+          <div class="fl-sub" style="width:85%"></div>
+          <div class="fl-sub" style="width:65%"></div>
+          <div class="fl-ctas">
+            <div class="fl-c1"></div>
+            <div class="fl-c2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard-body">
+        <div class="tcard-top">
+          <div class="tcard-name">Freelance Platform</div>
+          <div class="tcard-idx">06/06</div>
+        </div>
+        <div class="tcard-for">Freelancers & Independent Contractors</div>
+        <p class="tcard-desc">Deep navy/indigo hero with a bold typographic headline, availability badge, clear CTA buttons, and a services + portfolio section built for client conversion. Designed to communicate trust and capability at a glance — the kind of landing page a client bookmarks before reaching out.</p>
+        <div class="tcard-tags">
+          <span class="ttag">dark</span><span class="ttag">indigo</span><span class="ttag">freelance</span><span class="ttag">conversion</span>
+        </div>
+        <div class="tcard-actions">
+          <a href="https://statisticsage.github.io/Baysahtech-portfolio-templates/freelance_platform_hero_ui.html" target="_blank" class="t-prev">Live Preview →</a>
+          <a href="https://github.com/statisticsage/Baysahtech-portfolio-templates/blob/main/freelance_platform_hero_ui.html" target="_blank" class="t-dl">↓ Download</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- STUDIO -->
+    <div class="tcard reveal">
+      <div class="thumb t-studio">
+        <div class="thumb-inner" style="padding:1.5rem;align-items:flex-start;flex-direction:column;justify-content:flex-end">
+          <div class="st-big">NK</div>
+          <div class="st-sub" style="width:90%"></div>
+          <div class="st-sub" style="width:70%"></div>
+          <div class="st-btn"></div>
+        </div>
+      </div>
+      <div class="tcard-body">
+        <div class="tcard-top">
+          <div class="tcard-name">Studio</div>
+          <div class="tcard-idx">04/06</div>
+        </div>
+        <div class="tcard-for">Freelancers & Creative Directors</div>
+        <p class="tcard-desc">Full-bleed agency layout with page loader, magnetic cursor on project images, and large typographic hero. Case studies as full-width paired sections.</p>
+        <div class="tcard-tags">
+          <span class="ttag">dark</span><span class="ttag">agency</span><span class="ttag">bold</span><span class="ttag">freelance</span>
+        </div>
+        <div class="tcard-actions">
+          <a href="https://statisticsage.github.io/Baysahtech-portfolio-templates/studio.html" target="_blank" class="t-prev">Live Preview →</a>
+          <a href="https://github.com/statisticsage/Baysahtech-portfolio-templates/blob/main/studio.html" target="_blank" class="t-dl">↓ Download</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRECISION -->
+    <div class="tcard reveal">
+      <div class="thumb t-precision">
+        <div class="thumb-inner" style="padding:1.5rem">
+          <div class="pr-grid">
+            <div class="pr-left">
+              <div class="pr-h" style="background:rgba(17,17,17,0.7);width:90%"></div>
+              <div class="pr-h" style="background:rgba(17,17,17,0.7);width:70%"></div>
+              <div class="pr-h" style="background:#e63027;width:50%;height:14px"></div>
+            </div>
+            <div class="pr-right">
+              <div class="pr-p" style="width:100%"></div>
+              <div class="pr-p" style="width:90%"></div>
+              <div class="pr-p" style="width:80%"></div>
+              <div class="pr-p" style="width:95%"></div>
+              <div class="pr-p" style="width:70%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard-body">
+        <div class="tcard-top">
+          <div class="tcard-name">Precision</div>
+          <div class="tcard-idx">05/06</div>
+        </div>
+        <div class="tcard-for">EMs, PMs & Senior Leaders</div>
+        <p class="tcard-desc">12-column Swiss grid, pure typographic hierarchy. No decorations. Work as a scannable table, experience as a dense timeline. Serious by design.</p>
+        <div class="tcard-tags">
+          <span class="ttag">light</span><span class="ttag">grid</span><span class="ttag">swiss</span><span class="ttag">senior</span>
+        </div>
+        <div class="tcard-actions">
+          <a href="https://statisticsage.github.io/Baysahtech-portfolio-templates/precision.html" target="_blank" class="t-prev">Live Preview →</a>
+          <a href="https://github.com/statisticsage/Baysahtech-portfolio-templates/blob/main/precision.html" target="_blank" class="t-dl">↓ Download</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW TO USE -->
+<section id="howto">
+  <div class="howto-inner">
+    <div class="howto-head reveal">
+      <h2>How to use a template</h2>
+      <p>Four steps. Under 5 minutes.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <span class="step-n">step_01</span>
+        <h3>Pick your template</h3>
+        <p>Hit <strong style="color:rgba(255,255,255,0.7)">Live Preview</strong> on any card above. Browse the full template in your browser before committing to it.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">step_02</span>
+        <h3>Download the file</h3>
+        <p>Click <strong style="color:rgba(255,255,255,0.7)">Download</strong> → hit the <code>Raw</code> button → right-click the page → Save As → <code>index.html</code></p>
+      </div>
+      <div class="step">
+        <span class="step-n">step_03</span>
+        <h3>Edit your info</h3>
+        <p>Open in any editor. Change the name, title, projects, links. Edit <code>:root</code> CSS variables at the top to change colors in one place.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">step_04</span>
+        <h3>Deploy anywhere</h3>
+        <p>Upload to <strong style="color:rgba(255,255,255,0.7)">GitHub Pages</strong>, Vercel, or Netlify — all free, all support a single HTML file with zero config.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      BaysaTech
+      <span>MIT License · Free forever</span>
+    </div>
+    <div class="foot-links">
+      <a href="https://github.com/statisticsage/Baysahtech-portfolio-templates" target="_blank">GitHub</a>
+      <a href="https://github.com/statisticsage/Baysahtech-portfolio-templates/blob/main/LICENSE" target="_blank">License</a>
+      <a href="https://github.com/statisticsage/Baysahtech-portfolio-templates/issues" target="_blank">Report an issue</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), i * 50);
+    }
+  });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
