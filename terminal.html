@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kai Nakamura — Systems Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0e0e0e;
+  --bg2:#161616;
+  --bg3:#1e1e1e;
+  --green:#22c55e;
+  --green2:#16a34a;
+  --dim:#6b7280;
+  --mid:#9ca3af;
+  --text:#e5e7eb;
+  --mono:'JetBrains Mono',Menlo,monospace;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--mono);
+  font-size:14px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* selection */
+::selection{background:rgba(34,197,94,0.2);color:var(--green)}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--bg);
+  border-bottom:1px solid #222;
+  padding:0 3rem;
+  height:52px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-prompt{
+  display:flex;align-items:center;gap:0.5rem;
+  font-size:0.8rem;
+}
+.prompt-arrow{color:var(--green);font-size:0.9rem}
+.prompt-user{color:#818cf8}
+.prompt-at{color:var(--dim)}
+.prompt-host{color:var(--green)}
+.prompt-path{color:#38bdf8}
+.nav-links{
+  display:flex;gap:0;list-style:none;
+}
+.nav-links li a{
+  display:block;padding:0 1.2rem;
+  height:52px;line-height:52px;
+  font-size:0.75rem;color:var(--dim);
+  text-decoration:none;
+  border-left:1px solid #1a1a1a;
+  transition:color 0.15s,background 0.15s;
+}
+.nav-links li a:hover{color:var(--text);background:var(--bg2)}
+.nav-links li a .cmd{color:var(--green);margin-right:0.3rem}
+.nav-status{
+  font-size:0.72rem;color:var(--dim);
+  display:flex;align-items:center;gap:0.5rem;
+}
+.status-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--green);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+/* ── MAIN ── */
+main{
+  max-width:900px;margin:0 auto;
+  padding:6rem 3rem 4rem;
+}
+
+/* ── HERO ── */
+#hero{margin-bottom:5rem}
+.term-window{
+  background:var(--bg2);
+  border:1px solid #2a2a2a;
+  border-radius:8px;
+  overflow:hidden;
+}
+.term-bar{
+  background:#1a1a1a;
+  padding:0.7rem 1rem;
+  display:flex;align-items:center;gap:0.5rem;
+  border-bottom:1px solid #222;
+}
+.term-dot{width:11px;height:11px;border-radius:50%}
+.td-red{background:#ef4444}
+.td-yellow{background:#f59e0b}
+.td-green{background:#22c55e}
+.term-title{
+  flex:1;text-align:center;font-size:0.7rem;color:var(--dim);
+}
+.term-body{
+  padding:1.5rem 1.8rem;
+  font-size:0.82rem;
+  line-height:1.9;
+}
+.line{display:block;margin-bottom:0.1rem}
+.c-dim{color:var(--dim)}
+.c-green{color:var(--green)}
+.c-blue{color:#38bdf8}
+.c-purple{color:#a78bfa}
+.c-yellow{color:#fbbf24}
+.c-pink{color:#f472b6}
+.c-text{color:var(--text)}
+.blink{
+  display:inline-block;
+  width:8px;height:14px;
+  background:var(--green);
+  vertical-align:middle;
+  animation:blink 1s step-end infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── SECTION HEADER ── */
+.sec-head{
+  display:flex;align-items:center;gap:1rem;
+  margin-bottom:2rem;
+}
+.sec-cmd{color:var(--green);font-size:0.78rem}
+.sec-name{color:var(--text);font-size:0.78rem}
+.sec-line{flex:1;height:1px;background:#222}
+
+/* ── WORK ── */
+#work{margin-bottom:5rem}
+.project-block{
+  background:var(--bg2);
+  border:1px solid #222;
+  border-radius:4px;
+  margin-bottom:1rem;
+  overflow:hidden;
+  transition:border-color 0.2s;
+}
+.project-block:hover{border-color:#333}
+.proj-header{
+  display:flex;align-items:center;gap:0;
+  border-bottom:1px solid #222;
+  cursor:pointer;
+}
+.proj-num{
+  padding:0.75rem 1rem;
+  font-size:0.72rem;
+  color:var(--dim);
+  border-right:1px solid #222;
+  min-width:50px;text-align:center;
+}
+.proj-name-row{
+  flex:1;padding:0.75rem 1.2rem;
+  display:flex;align-items:center;gap:0.6rem;
+}
+.proj-name{
+  font-size:0.83rem;font-weight:500;color:var(--text);
+}
+.proj-lang{
+  font-size:0.68rem;padding:0.15rem 0.5rem;
+  border-radius:3px;
+  background:rgba(34,197,94,0.08);
+  color:var(--green);
+  border:1px solid rgba(34,197,94,0.2);
+}
+.proj-stars{
+  margin-left:auto;
+  font-size:0.72rem;color:var(--dim);
+  padding-right:1rem;
+  display:flex;align-items:center;gap:0.3rem;
+}
+.proj-body{
+  padding:1.2rem 1.5rem;
+  font-size:0.8rem;
+  color:var(--mid);
+  line-height:1.8;
+}
+.proj-body .comment{color:var(--dim);font-style:italic}
+.proj-body .key{color:var(--purple,#a78bfa)}
+.proj-meta-row{
+  display:flex;gap:2rem;
+  padding:0.8rem 1.5rem;
+  border-top:1px solid #1e1e1e;
+  font-size:0.72rem;color:var(--dim);
+  flex-wrap:wrap;gap:1.5rem;
+}
+.proj-meta-row a{
+  color:var(--green);text-decoration:none;
+  transition:opacity 0.15s;
+}
+.proj-meta-row a:hover{opacity:0.7}
+
+/* ── SKILLS ── */
+#skills{margin-bottom:5rem}
+.skills-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border:1px solid #222;border-radius:4px;overflow:hidden;
+}
+.skill-group{padding:1.5rem;border-right:1px solid #222;border-bottom:1px solid #222}
+.skill-group:nth-child(even){border-right:none}
+.skill-group:nth-last-child(-n+2){border-bottom:none}
+.skill-group-title{
+  font-size:0.68rem;color:var(--green);
+  letter-spacing:0.1em;margin-bottom:1rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.skill-group-title::before{content:'#'}
+.skill-item{
+  display:flex;align-items:center;gap:0.8rem;
+  margin-bottom:0.55rem;
+  font-size:0.78rem;color:var(--mid);
+}
+.skill-bar-outer{
+  flex:1;height:2px;background:#222;border-radius:2px;overflow:hidden;
+}
+.skill-bar-inner{
+  height:100%;border-radius:2px;
+  background:linear-gradient(90deg,var(--green2),var(--green));
+  transition:width 1s cubic-bezier(0.16,1,0.3,1);
+  width:0;
+}
+.skill-bar-inner.animated{width:var(--w)}
+.skill-val{font-size:0.65rem;color:var(--dim);min-width:28px;text-align:right}
+
+/* ── EXPERIENCE ── */
+#experience{margin-bottom:5rem}
+.exp-block{
+  display:grid;
+  grid-template-columns:160px 1fr;
+  gap:0;
+  border:1px solid #222;
+  border-radius:4px;
+  overflow:hidden;
+  margin-bottom:1rem;
+}
+.exp-left{
+  background:var(--bg2);
+  padding:1.5rem;
+  border-right:1px solid #222;
+  display:flex;flex-direction:column;gap:0.5rem;
+}
+.exp-dates{font-size:0.72rem;color:var(--green)}
+.exp-company{font-size:0.8rem;color:var(--text);font-weight:500}
+.exp-type{font-size:0.68rem;color:var(--dim)}
+.exp-right{
+  padding:1.5rem;
+  background:var(--bg);
+}
+.exp-title{font-size:0.88rem;color:var(--text);font-weight:500;margin-bottom:0.8rem}
+.exp-list{list-style:none;font-size:0.78rem;color:var(--mid);line-height:1.8}
+.exp-list li{
+  padding-left:1.2rem;position:relative;margin-bottom:0.3rem;
+}
+.exp-list li::before{
+  content:'//';
+  position:absolute;left:0;
+  color:var(--dim);font-size:0.65rem;
+}
+
+/* ── CONTACT ── */
+#contact{
+  background:var(--bg2);
+  border:1px solid #222;border-radius:4px;
+  padding:2rem;margin-bottom:4rem;
+}
+.contact-prompt{
+  font-size:0.78rem;color:var(--dim);margin-bottom:1.5rem;
+  padding-bottom:1rem;border-bottom:1px solid #1e1e1e;
+}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;
+  margin-bottom:1.5rem;
+}
+.contact-item{
+  background:var(--bg);
+  border:1px solid #2a2a2a;
+  border-radius:3px;padding:1rem 1.2rem;
+  transition:border-color 0.2s;
+}
+.contact-item:hover{border-color:rgba(34,197,94,0.4)}
+.ci-label{font-size:0.65rem;color:var(--dim);margin-bottom:0.3rem;display:block}
+.ci-value{font-size:0.82rem;color:var(--green)}
+.ci-value a{color:var(--green);text-decoration:none}
+.contact-output{font-size:0.78rem;color:var(--mid)}
+.co-green{color:var(--green)}
+
+/* ── FOOTER ── */
+footer{
+  padding:1.5rem 0;
+  border-top:1px solid #1a1a1a;
+  display:flex;justify-content:space-between;
+  font-size:0.72rem;color:var(--dim);
+  flex-wrap:wrap;gap:0.5rem;
+}
+footer a{color:var(--dim);text-decoration:none}
+
+@media(max-width:700px){
+  nav{padding:0 1rem}
+  .nav-links{display:none}
+  main{padding:5rem 1.2rem 3rem}
+  .skills-grid{grid-template-columns:1fr}
+  .skill-group:nth-child(even){border-right:1px solid #222}
+  .exp-block{grid-template-columns:1fr}
+  .exp-left{border-right:none;border-bottom:1px solid #222}
+  .contact-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-prompt">
+    <span class="prompt-arrow">❯</span>
+    <span class="prompt-user">kai</span>
+    <span class="prompt-at">@</span>
+    <span class="prompt-host">nakamura</span>
+    <span class="prompt-path">&nbsp;~/portfolio</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#work"><span class="cmd">cd</span> work</a></li>
+    <li><a href="#skills"><span class="cmd">ls</span> skills</a></li>
+    <li><a href="#experience"><span class="cmd">cat</span> exp</a></li>
+    <li><a href="#contact"><span class="cmd">curl</span> contact</a></li>
+  </ul>
+  <div class="nav-status">
+    <div class="status-dot"></div>
+    available for work
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="term-window">
+    <div class="term-bar">
+      <div class="term-dot td-red"></div>
+      <div class="term-dot td-yellow"></div>
+      <div class="term-dot td-green"></div>
+      <div class="term-title">kai@nakamura: ~/portfolio — bash</div>
+    </div>
+    <div class="term-body">
+      <span class="line"><span class="c-dim">~</span> <span class="c-green">whoami</span></span>
+      <span class="line c-text">kai nakamura — systems engineer</span>
+      <span class="line">&nbsp;</span>
+      <span class="line"><span class="c-dim">~</span> <span class="c-green">cat</span> <span class="c-blue">bio.txt</span></span>
+      <span class="line c-dim"># ─────────────────────────────────────────</span>
+      <span class="line"><span class="c-purple">Name</span>      <span class="c-text">Kai Nakamura</span></span>
+      <span class="line"><span class="c-purple">Role</span>      <span class="c-text">Senior Systems Engineer</span></span>
+      <span class="line"><span class="c-purple">Location</span>  <span class="c-text">Tokyo / Remote</span></span>
+      <span class="line"><span class="c-purple">Focus</span>     <span class="c-text">distributed systems, compilers, performance</span></span>
+      <span class="line"><span class="c-purple">Open to</span>  <span class="c-yellow">staff+ roles, infrastructure, platform</span></span>
+      <span class="line c-dim"># ─────────────────────────────────────────</span>
+      <span class="line">&nbsp;</span>
+      <span class="line"><span class="c-dim">~</span> <span class="c-green">echo</span> <span class="c-blue">$DESCRIPTION</span></span>
+      <span class="line c-text">I build the systems that other engineers build on top of.</span>
+      <span class="line c-text">8 years writing Go and Rust in production. Comfortable</span>
+      <span class="line c-text">with ambiguity, allergic to unnecessary complexity.</span>
+      <span class="line">&nbsp;</span>
+      <span class="line"><span class="c-dim">~</span> <span class="c-green">ping</span> <span class="c-blue">kai@example.com</span> <span class="c-dim">--message "hello"</span></span>
+      <span class="line"><span class="c-green">PING</span> <span class="c-text">kai@example.com — 64 bytes, time=0ms</span></span>
+      <span class="line c-dim">Response guaranteed within 48 hours.</span>
+      <span class="line">&nbsp;</span>
+      <span class="line"><span class="c-dim">~</span> <span class="blink"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="sec-head">
+    <span class="sec-cmd">$ ls</span>
+    <span class="sec-name">projects/</span>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="project-block">
+    <div class="proj-header">
+      <div class="proj-num">01</div>
+      <div class="proj-name-row">
+        <span class="proj-name">flux-scheduler</span>
+        <span class="proj-lang">Go</span>
+      </div>
+      <div class="proj-stars">★ 2.8k</div>
+    </div>
+    <div class="proj-body">
+      <span class="comment">// A work-stealing task scheduler for Go. Drop-in goroutine pool with</span><br>
+      <span class="comment">// priority queues, back-pressure, and structured concurrency.</span><br>
+      <br>
+      Reduces goroutine contention by 70% under high-concurrency workloads compared to <span class="c-blue">sync.WaitGroup</span> patterns. Used in production at Cloudflare and several open-source databases.
+    </div>
+    <div class="proj-meta-row">
+      <span>Go 1.21 · Linux / macOS · MIT License</span>
+      <a href="#">github →</a>
+      <a href="#">docs →</a>
+      <span class="c-green">actively maintained</span>
+    </div>
+  </div>
+
+  <div class="project-block">
+    <div class="proj-header">
+      <div class="proj-num">02</div>
+      <div class="proj-name-row">
+        <span class="proj-name">kv-bench</span>
+        <span class="proj-lang">Rust</span>
+      </div>
+      <div class="proj-stars">★ 940</div>
+    </div>
+    <div class="proj-body">
+      <span class="comment">// Deterministic benchmark harness for key-value store engines.</span><br>
+      <span class="comment">// Compares RocksDB, LMDB, Badger, and custom implementations.</span><br>
+      <br>
+      Reproducible perf testing with workload replay, latency percentile tracking, and flamegraph integration. Used by 3 database teams to catch regressions before merging.
+    </div>
+    <div class="proj-meta-row">
+      <span>Rust 2021 · Apache 2.0</span>
+      <a href="#">github →</a>
+      <a href="#">benchmarks →</a>
+    </div>
+  </div>
+
+  <div class="project-block">
+    <div class="proj-header">
+      <div class="proj-num">03</div>
+      <div class="proj-name-row">
+        <span class="proj-name">tinyraft</span>
+        <span class="proj-lang">Go</span>
+      </div>
+      <div class="proj-stars">★ 1.1k</div>
+    </div>
+    <div class="proj-body">
+      <span class="comment">// Minimal, readable Raft consensus implementation for educational use.</span><br>
+      <br>
+      Ships with an animated log visualizer, chaos testing utilities (random message drops, clock skew), and line-by-line annotations referencing the original paper.
+    </div>
+    <div class="proj-meta-row">
+      <span>Go · MIT License</span>
+      <a href="#">github →</a>
+      <a href="#">write-up →</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-head">
+    <span class="sec-cmd">$ cat</span>
+    <span class="sec-name">skills.json</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">languages</div>
+      <div class="skill-item"><span style="flex:1">Go</span><div class="skill-bar-outer"><div class="skill-bar-inner" style="--w:95%"></div></div><span class="skill-val">8yr</span></div>
+      <div class="skill-item"><span style="flex:1">Rust</span><div class="skill-bar-outer"><div class="skill-bar-inner" style="--w:80%"></div></div><span class="skill-val">4yr</span></div>
+      <div class="skill-item"><span style="flex:1">C / C++</span><div class="skill-bar-outer"><div class="skill-bar-inner" style="--w:70%"></div></div><span class="skill-val">3yr</span></div>
+      <div class="skill-item"><span style="flex:1">Python</span><div class="skill-bar-outer"><div class="skill-bar-inner" style="--w:65%"></div></div><span class="skill-val">5yr</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">systems</div>
+      <div class="skill-item"><span style="flex:1">Distributed Systems</span><div class="skill-bar-outer"><div class="skill-bar-inner" style="--w:90%"></div></div><span class="skill-val">✓</span></div>
+      <div class="skill-item"><span style="flex:1">Linux Internals</span><div class="skill-bar-outer"><div class="skill-bar-inner" style="--w:85%"></div></div><span class="skill-val">✓</span></div>
+      <div class="skill-item"><span style="flex:1">Networking / eBPF</span><div class="skill-bar-outer"><div class="skill-bar-inner" style="--w:75%"></div></div><span class="skill-val">✓</span></div>
+      <div class="skill-item"><span style="flex:1">Compilers / Parsers</span><div class="skill-bar-outer"><div class="skill-bar-inner" style="--w:70%"></div></div><span class="skill-val">✓</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">infra &amp; tooling</div>
+      <div class="skill-item"><span style="flex:1">Kubernetes</span><div class="skill-bar-outer"><div class="skill-bar-inner" style="--w:80%"></div></div><span class="skill-val">✓</span></div>
+      <div class="skill-item"><span style="flex:1">Terraform</span><div class="skill-bar-outer"><div class="skill-bar-inner" style="--w:75%"></div></div><span class="skill-val">✓</span></div>
+      <div class="skill-item"><span style="flex:1">Prometheus / Grafana</span><div class="skill-bar-outer"><div class="skill-bar-inner" style="--w:85%"></div></div><span class="skill-val">✓</span></div>
+      <div class="skill-item"><span style="flex:1">PostgreSQL</span><div class="skill-bar-outer"><div class="skill-bar-inner" style="--w:80%"></div></div><span class="skill-val">✓</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">databases</div>
+      <div class="skill-item"><span style="flex:1">Raft / Paxos</span><div class="skill-bar-outer"><div class="skill-bar-inner" style="--w:85%"></div></div><span class="skill-val">✓</span></div>
+      <div class="skill-item"><span style="flex:1">LSM Trees</span><div class="skill-bar-outer"><div class="skill-bar-inner" style="--w:80%"></div></div><span class="skill-val">✓</span></div>
+      <div class="skill-item"><span style="flex:1">RocksDB / Badger</span><div class="skill-bar-outer"><div class="skill-bar-inner" style="--w:75%"></div></div><span class="skill-val">✓</span></div>
+      <div class="skill-item"><span style="flex:1">Redis internals</span><div class="skill-bar-outer"><div class="skill-bar-inner" style="--w:70%"></div></div><span class="skill-val">✓</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-head">
+    <span class="sec-cmd">$ git log</span>
+    <span class="sec-name">--career</span>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="exp-block">
+    <div class="exp-left">
+      <span class="exp-dates">2022 — now</span>
+      <span class="exp-company">Cloudflare</span>
+      <span class="exp-type">Staff Engineer</span>
+    </div>
+    <div class="exp-right">
+      <div class="exp-title">Infrastructure Platform · Networking Layer</div>
+      <ul class="exp-list">
+        <li>Rewrote the internal request routing layer in Go; reduced p99 latency from 12ms to 3.4ms globally</li>
+        <li>Designed the failover protocol for 200+ edge PoPs handling 50M req/s at peak</li>
+        <li>Built an eBPF-based observability agent that traces requests through the kernel with &lt;1% overhead</li>
+        <li>Grew the platform team from 4 to 11 engineers; introduced RFC-based design review process</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-block">
+    <div class="exp-left">
+      <span class="exp-dates">2019 — 2022</span>
+      <span class="exp-company">PlanetScale</span>
+      <span class="exp-type">Senior Engineer</span>
+    </div>
+    <div class="exp-right">
+      <div class="exp-title">Database Platform · Query Engine</div>
+      <ul class="exp-list">
+        <li>Contributed to Vitess online schema migration tooling, now used by YouTube and GitHub</li>
+        <li>Built a query plan cache that reduced MySQL query analysis CPU by 35%</li>
+        <li>Led the implementation of connection pooling for serverless database branches</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-block">
+    <div class="exp-left">
+      <span class="exp-dates">2017 — 2019</span>
+      <span class="exp-company">Cockroach Labs</span>
+      <span class="exp-type">Engineer</span>
+    </div>
+    <div class="exp-right">
+      <div class="exp-title">Distributed SQL · Storage Engine</div>
+      <ul class="exp-list">
+        <li>Worked on the Raft log replication path and contributed range lease transfer logic</li>
+        <li>Implemented read-your-writes consistency for cross-region transactions</li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-prompt">
+    <span class="c-dim">~</span> <span class="c-green">curl</span> <span class="c-blue">-X GET</span> https://kai.dev/contact
+  </div>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <span class="ci-label">email</span>
+      <span class="ci-value"><a href="mailto:kai@example.com">kai@example.com</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="ci-label">github</span>
+      <span class="ci-value"><a href="#">github.com/kainakamura</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="ci-label">linkedin</span>
+      <span class="ci-value"><a href="#">linkedin.com/in/kainakamura</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="ci-label">writing</span>
+      <span class="ci-value"><a href="#">kai.dev/blog</a></span>
+    </div>
+  </div>
+  <div class="contact-output">
+    <span class="c-dim">// Response:</span> <span class="co-green">200 OK</span> · Best for serious inquiries about staff+ infra roles.<br>
+    <span class="c-dim">// Note:</span> Not looking for frontend, mobile, or management-only roles.
+  </div>
+</section>
+
+<footer>
+  <span>kai nakamura · 2024</span>
+  <span>built with &lt;html&gt; and strong opinions</span>
+  <span><a href="#">source on github</a></span>
+</footer>
+
+</main>
+
+<script>
+// Animate skill bars on scroll
+const bars = document.querySelectorAll('.skill-bar-inner');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('animated'), 100);
+    }
+  });
+}, { threshold: 0.2 });
+bars.forEach(b => observer.observe(b));
+</script>
+</body>
+</html>

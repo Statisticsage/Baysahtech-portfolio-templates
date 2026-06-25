@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maya Chen — Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --ink:#1a1714;
+  --ink2:#3d3a35;
+  --stone:#7a7570;
+  --paper:#f5f2eb;
+  --paper2:#ede9e0;
+  --rule:rgba(26,23,20,0.12);
+  --accent:#c0392b;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --mono:'DM Mono',monospace;
+}
+
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+  cursor:none;
+}
+
+/* ── CURSOR ── */
+.cur{
+  position:fixed;width:8px;height:8px;
+  background:var(--ink);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform 0.15s,width 0.3s,height 0.3s,background 0.3s,border-radius 0.3s;
+  mix-blend-mode:multiply;
+}
+.cur.on-text{
+  width:48px;height:48px;
+  background:rgba(192,57,43,0.12);
+  border-radius:50%;
+}
+.cur.on-link{
+  width:20px;height:20px;
+  background:var(--accent);
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--rule);
+  padding:0 4rem;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  height:64px;
+}
+.nav-name{
+  font-family:var(--serif);
+  font-size:1.1rem;
+  font-weight:700;
+  letter-spacing:-0.01em;
+  color:var(--ink);
+  text-decoration:none;
+}
+.nav-issue{
+  font-family:var(--mono);
+  font-size:0.68rem;
+  color:var(--stone);
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  text-align:center;
+  line-height:1.4;
+}
+.nav-links{
+  display:flex;gap:2rem;list-style:none;
+  justify-content:flex-end;align-items:center;
+}
+.nav-links a{
+  font-size:0.8rem;
+  font-weight:400;
+  color:var(--stone);
+  text-decoration:none;
+  letter-spacing:0.04em;
+  position:relative;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta-link{
+  font-size:0.78rem;
+  color:var(--accent) !important;
+  font-weight:500;
+  border-bottom:1px solid var(--accent);
+  padding-bottom:1px;
+}
+
+/* ── HERO ── */
+#hero{
+  padding:10rem 4rem 0;
+  max-width:1200px;margin:0 auto;
+  position:relative;
+}
+.hero-rule{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:1.5rem;
+  margin-bottom:3rem;
+}
+.hero-rule-line{height:1px;background:var(--rule)}
+.hero-rule-text{
+  font-family:var(--mono);
+  font-size:0.68rem;
+  color:var(--stone);
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:end;
+  padding-bottom:4rem;
+  border-bottom:1px solid var(--rule);
+}
+.hero-left h1{
+  font-family:var(--serif);
+  font-size:clamp(3.5rem,7vw,6.5rem);
+  font-weight:900;
+  line-height:0.95;
+  letter-spacing:-0.03em;
+  color:var(--ink);
+}
+.hero-left h1 em{
+  font-style:italic;
+  color:var(--accent);
+}
+.hero-left h1 .sub{
+  font-weight:400;
+  font-style:italic;
+  font-size:0.55em;
+  display:block;
+  line-height:1.6;
+  margin-top:0.3em;
+  color:var(--ink2);
+}
+.hero-right{
+  padding-bottom:0.5rem;
+}
+.hero-right p{
+  font-size:1rem;
+  line-height:1.85;
+  color:var(--ink2);
+  margin-bottom:2rem;
+  max-width:420px;
+}
+.hero-right p strong{color:var(--ink);font-weight:500}
+.hero-meta{
+  display:flex;flex-direction:column;gap:0.6rem;
+  padding-top:2rem;
+  border-top:1px solid var(--rule);
+}
+.meta-row{
+  display:flex;justify-content:space-between;
+  font-family:var(--mono);font-size:0.72rem;
+  color:var(--stone);
+}
+.meta-row span:last-child{color:var(--ink)}
+.hero-scroll{
+  position:absolute;
+  bottom:2rem;right:4rem;
+  writing-mode:vertical-rl;
+  font-family:var(--mono);font-size:0.65rem;
+  color:var(--stone);letter-spacing:0.2em;text-transform:uppercase;
+  display:flex;align-items:center;gap:0.8rem;
+}
+.hero-scroll::before{
+  content:'';width:1px;height:60px;background:var(--stone);
+  animation:scroll-line 2s ease-in-out infinite;
+}
+@keyframes scroll-line{
+  0%,100%{height:60px;opacity:1}
+  50%{height:20px;opacity:0.4}
+}
+
+/* ── MARQUEE ── */
+.marquee-strip{
+  background:var(--ink);
+  padding:0.85rem 0;
+  overflow:hidden;
+  position:relative;z-index:1;
+}
+.marquee-inner{
+  display:flex;gap:3rem;white-space:nowrap;
+  animation:marquee 20s linear infinite;
+  width:max-content;
+}
+.marquee-inner span{
+  font-family:var(--mono);font-size:0.72rem;
+  color:var(--paper);letter-spacing:0.15em;text-transform:uppercase;
+  opacity:0.7;
+}
+.marquee-inner .dot{color:var(--accent);opacity:1;font-size:1rem;line-height:1}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── WORK ── */
+#work{
+  padding:6rem 4rem;
+  max-width:1200px;margin:0 auto;
+}
+.section-header{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:3rem;padding-bottom:1rem;
+  border-bottom:1px solid var(--rule);
+}
+.section-header h2{
+  font-family:var(--serif);
+  font-size:2.2rem;font-weight:700;
+  letter-spacing:-0.02em;
+}
+.section-header a{
+  font-family:var(--mono);font-size:0.72rem;
+  color:var(--stone);text-decoration:none;
+  letter-spacing:0.1em;
+  border-bottom:1px solid var(--rule);
+  padding-bottom:2px;
+  transition:color 0.2s,border-color 0.2s;
+}
+.section-header a:hover{color:var(--ink);border-color:var(--ink)}
+
+/* project rows */
+.project-row{
+  display:grid;grid-template-columns:80px 1fr 220px;
+  gap:0 2.5rem;
+  align-items:start;
+  padding:2.5rem 0;
+  border-bottom:1px solid var(--rule);
+  cursor:pointer;
+  position:relative;
+  transition:background 0.2s;
+}
+.project-row::after{
+  content:'';
+  position:absolute;left:0;right:0;bottom:0;top:0;
+  background:var(--paper2);
+  z-index:-1;opacity:0;
+  transition:opacity 0.25s;
+}
+.project-row:hover::after{opacity:1}
+.project-num{
+  font-family:var(--mono);font-size:0.7rem;
+  color:var(--stone);letter-spacing:0.1em;
+  padding-top:0.35rem;
+}
+.project-body{}
+.project-body h3{
+  font-family:var(--serif);
+  font-size:1.6rem;font-weight:700;
+  letter-spacing:-0.02em;
+  margin-bottom:0.5rem;
+  transition:color 0.2s;
+}
+.project-row:hover .project-body h3{color:var(--accent)}
+.project-body p{
+  font-size:0.9rem;color:var(--stone);
+  line-height:1.7;max-width:540px;
+}
+.project-meta{text-align:right;padding-top:0.25rem}
+.project-year{
+  font-family:var(--mono);font-size:0.72rem;
+  color:var(--stone);display:block;margin-bottom:0.7rem;
+}
+.tag-list{display:flex;flex-wrap:wrap;gap:0.4rem;justify-content:flex-end}
+.tag{
+  font-family:var(--mono);font-size:0.65rem;
+  color:var(--stone);
+  border:1px solid var(--rule);
+  padding:0.2rem 0.5rem;border-radius:2px;
+  background:transparent;
+  transition:background 0.2s,color 0.2s;
+}
+.project-row:hover .tag{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.project-arrow{
+  position:absolute;right:1.5rem;top:50%;transform:translateY(-50%) translateX(10px);
+  width:36px;height:36px;border-radius:50%;
+  background:var(--accent);color:white;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.9rem;opacity:0;
+  transition:opacity 0.2s,transform 0.2s;
+}
+.project-row:hover .project-arrow{opacity:1;transform:translateY(-50%) translateX(0)}
+
+/* ── ABOUT ── */
+#about{
+  padding:6rem 4rem;
+  background:var(--ink);color:var(--paper);
+}
+.about-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:6rem;
+  align-items:start;
+}
+.about-left{}
+.about-eyebrow{
+  font-family:var(--mono);font-size:0.7rem;
+  color:var(--stone);letter-spacing:0.18em;text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+.about-left h2{
+  font-family:var(--serif);
+  font-size:clamp(2.5rem,5vw,4rem);
+  font-weight:700;line-height:1.05;
+  letter-spacing:-0.03em;margin-bottom:0;
+}
+.about-left h2 em{font-style:italic;color:var(--accent)}
+.about-right{}
+.about-right p{
+  font-size:0.95rem;
+  line-height:1.9;
+  color:rgba(245,242,235,0.7);
+  margin-bottom:1.4rem;
+}
+.about-right p strong{color:var(--paper);font-weight:500}
+.about-list{
+  margin-top:2rem;padding-top:2rem;
+  border-top:1px solid rgba(255,255,255,0.1);
+}
+.about-list h4{
+  font-family:var(--mono);font-size:0.7rem;
+  color:var(--stone);letter-spacing:0.15em;text-transform:uppercase;
+  margin-bottom:1rem;
+}
+.skill-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0.7rem 0;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  font-size:0.88rem;
+}
+.skill-name{color:var(--paper)}
+.skill-years{
+  font-family:var(--mono);font-size:0.68rem;
+  color:var(--stone);
+}
+
+/* ── PROCESS ── */
+#process{
+  padding:6rem 4rem;
+  max-width:1200px;margin:0 auto;
+}
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  margin-top:3rem;
+  border:1px solid var(--rule);
+}
+.process-step{
+  padding:2.5rem 2rem;
+  border-right:1px solid var(--rule);
+  position:relative;
+}
+.process-step:last-child{border-right:none}
+.step-index{
+  font-family:var(--mono);
+  font-size:0.65rem;color:var(--stone);
+  letter-spacing:0.15em;margin-bottom:1.5rem;display:block;
+}
+.process-step h3{
+  font-family:var(--serif);
+  font-size:1.3rem;font-weight:700;
+  margin-bottom:0.75rem;letter-spacing:-0.01em;
+}
+.process-step p{
+  font-size:0.83rem;color:var(--stone);line-height:1.7;
+}
+
+/* ── CONTACT ── */
+#contact{
+  padding:6rem 4rem;
+  border-top:1px solid var(--rule);
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:6rem;
+  align-items:center;
+}
+.contact-left h2{
+  font-family:var(--serif);
+  font-size:clamp(2.5rem,5vw,4.5rem);
+  font-weight:900;
+  line-height:0.95;
+  letter-spacing:-0.04em;
+  margin-bottom:2rem;
+}
+.contact-left h2 em{font-style:italic}
+.contact-right{}
+.contact-right p{
+  font-size:0.95rem;color:var(--stone);line-height:1.8;
+  margin-bottom:2rem;
+}
+.contact-email{
+  display:block;
+  font-family:var(--serif);
+  font-size:1.4rem;font-weight:700;
+  color:var(--ink);text-decoration:none;
+  border-bottom:2px solid var(--ink);
+  padding-bottom:0.3rem;
+  transition:color 0.2s,border-color 0.2s;
+  margin-bottom:2.5rem;
+}
+.contact-email:hover{color:var(--accent);border-color:var(--accent)}
+.contact-socials{
+  display:flex;gap:2rem;
+}
+.contact-socials a{
+  font-family:var(--mono);font-size:0.72rem;
+  color:var(--stone);text-decoration:none;
+  letter-spacing:0.1em;
+  transition:color 0.2s;
+  border-bottom:1px solid transparent;
+  padding-bottom:1px;
+}
+.contact-socials a:hover{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* ── FOOTER ── */
+footer{
+  padding:1.5rem 4rem;
+  border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:0.68rem;
+  color:var(--stone);
+}
+
+/* ── REVEAL ── */
+.reveal{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 0.6s ease,transform 0.6s ease;
+}
+.reveal.in{opacity:1;transform:none}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  nav{padding:0 1.5rem;grid-template-columns:1fr auto}
+  .nav-issue,.nav-links{display:none}
+  #hero{padding:7rem 1.5rem 0}
+  .hero-grid{grid-template-columns:1fr;gap:2rem}
+  .hero-scroll{display:none}
+  #work{padding:4rem 1.5rem}
+  .project-row{grid-template-columns:50px 1fr;gap:0 1rem}
+  .project-meta{display:none}
+  #about{padding:4rem 1.5rem}
+  .about-inner{grid-template-columns:1fr;gap:3rem}
+  #process{padding:4rem 1.5rem}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .process-step{border-bottom:1px solid var(--rule)}
+  #contact{padding:4rem 1.5rem;grid-template-columns:1fr;gap:3rem}
+  footer{padding:1.5rem;flex-direction:column;gap:0.5rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-name">Maya Chen</a>
+  <div class="nav-issue">
+    Portfolio — 2024<br>Product Design
+  </div>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact" class="nav-cta-link">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-rule">
+    <div class="hero-rule-line"></div>
+    <div class="hero-rule-text">Product Designer · San Francisco</div>
+    <div class="hero-rule-line"></div>
+  </div>
+  <div class="hero-grid">
+    <div class="hero-left reveal">
+      <h1>
+        Maya<br>
+        <em>Chen</em>
+        <span class="sub">Design that thinks<br>as well as it looks.</span>
+      </h1>
+    </div>
+    <div class="hero-right reveal">
+      <p>I design digital products that earn trust by getting out of the way. Six years helping <strong>early-stage startups</strong> and <strong>enterprise teams</strong> ship work they're proud of — from zero-to-one products to design systems at scale.</p>
+      <p>Currently open to <strong>senior IC and lead roles</strong>. Available from March 2025.</p>
+      <div class="hero-meta">
+        <div class="meta-row"><span>Current</span><span>Figma · Design Systems Lead</span></div>
+        <div class="meta-row"><span>Previously</span><span>Linear · Notion · IDEO</span></div>
+        <div class="meta-row"><span>Education</span><span>RISD · MFA Interaction Design</span></div>
+        <div class="meta-row"><span>Availability</span><span style="color:var(--accent)">Open to roles</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>Product Design</span><span class="dot">·</span>
+    <span>Design Systems</span><span class="dot">·</span>
+    <span>User Research</span><span class="dot">·</span>
+    <span>Prototyping</span><span class="dot">·</span>
+    <span>Figma</span><span class="dot">·</span>
+    <span>Motion Design</span><span class="dot">·</span>
+    <span>Brand Identity</span><span class="dot">·</span>
+    <span>Product Strategy</span><span class="dot">·</span>
+    <span>Product Design</span><span class="dot">·</span>
+    <span>Design Systems</span><span class="dot">·</span>
+    <span>User Research</span><span class="dot">·</span>
+    <span>Prototyping</span><span class="dot">·</span>
+    <span>Figma</span><span class="dot">·</span>
+    <span>Motion Design</span><span class="dot">·</span>
+    <span>Brand Identity</span><span class="dot">·</span>
+    <span>Product Strategy</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-header reveal">
+    <h2>Selected Work</h2>
+    <a href="#">View all projects →</a>
+  </div>
+
+  <div class="project-row reveal">
+    <div class="project-num">001</div>
+    <div class="project-body">
+      <h3>Figma Design System Overhaul</h3>
+      <p>Rebuilt Figma's internal component library from 1,200 fragmented components to a coherent 280-token system adopted by 140 product designers. Reduced design-to-handoff time by 55%.</p>
+    </div>
+    <div class="project-meta">
+      <span class="project-year">2023 — 2024</span>
+      <div class="tag-list">
+        <span class="tag">Systems</span>
+        <span class="tag">Figma</span>
+        <span class="tag">Research</span>
+      </div>
+    </div>
+    <div class="project-arrow">→</div>
+  </div>
+
+  <div class="project-row reveal">
+    <div class="project-num">002</div>
+    <div class="project-body">
+      <h3>Linear — Issue Tracking Redesign</h3>
+      <p>Redesigned the core issue view used by 80k+ engineering teams. Reduced time-to-create-issue from 8 steps to 2, with zero user complaints in first 90 days post-ship.</p>
+    </div>
+    <div class="project-meta">
+      <span class="project-year">2022</span>
+      <div class="tag-list">
+        <span class="tag">Product</span>
+        <span class="tag">Research</span>
+        <span class="tag">Motion</span>
+      </div>
+    </div>
+    <div class="project-arrow">→</div>
+  </div>
+
+  <div class="project-row reveal">
+    <div class="project-num">003</div>
+    <div class="project-body">
+      <h3>Notion — AI Onboarding Flow</h3>
+      <p>Designed the first AI-assisted onboarding experience, increasing 7-day retention by 22% and cutting time-to-first-value from 14 minutes to under 4.</p>
+    </div>
+    <div class="project-meta">
+      <span class="project-year">2021</span>
+      <div class="tag-list">
+        <span class="tag">AI/UX</span>
+        <span class="tag">Onboarding</span>
+      </div>
+    </div>
+    <div class="project-arrow">→</div>
+  </div>
+
+  <div class="project-row reveal">
+    <div class="project-num">004</div>
+    <div class="project-body">
+      <h3>IDEO — Healthcare Patient Portal</h3>
+      <p>Led a 4-month research and design sprint for a major US health system's patient-facing portal. Conducted 34 user interviews, synthesized insights, and shipped a WCAG AA-compliant interface now used by 600k patients.</p>
+    </div>
+    <div class="project-meta">
+      <span class="project-year">2020</span>
+      <div class="tag-list">
+        <span class="tag">Healthcare</span>
+        <span class="tag">Accessibility</span>
+        <span class="tag">Research</span>
+      </div>
+    </div>
+    <div class="project-arrow">→</div>
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-left reveal">
+      <div class="about-eyebrow">About me</div>
+      <h2>Design is a<br><em>conversation</em>,<br>not a delivery.</h2>
+    </div>
+    <div class="about-right reveal">
+      <p>I came to product design through cognitive science, which means I think about behavior before I think about pixels. Good design doesn't impress — it <strong>disappears</strong>. My job is to make the right thing easy and the wrong thing hard.</p>
+      <p>I've worked embedded on product teams where I owned design end-to-end, and inside design orgs where I focused on systems and craft standards. I'm most effective when I'm <strong>close to decisions</strong> — not three handoffs away from them.</p>
+      <p>Outside work: ceramics, endurance running, reading philosophy I don't fully understand.</p>
+      <div class="about-list">
+        <h4>Tools & Disciplines</h4>
+        <div class="skill-row"><span class="skill-name">Product Design</span><span class="skill-years">6 years</span></div>
+        <div class="skill-row"><span class="skill-name">Design Systems</span><span class="skill-years">4 years</span></div>
+        <div class="skill-row"><span class="skill-name">User Research</span><span class="skill-years">6 years</span></div>
+        <div class="skill-row"><span class="skill-name">Motion / Prototyping</span><span class="skill-years">3 years</span></div>
+        <div class="skill-row"><span class="skill-name">Figma · Framer · Principle</span><span class="skill-years">Primary tools</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-header reveal">
+    <h2>How I Work</h2>
+  </div>
+  <div class="process-grid reveal">
+    <div class="process-step">
+      <span class="step-index">Discover</span>
+      <h3>Listen before drawing.</h3>
+      <p>Every project starts with talking to the people who will use it. I find the gap between what users say they want and what they actually need.</p>
+    </div>
+    <div class="process-step">
+      <span class="step-index">Define</span>
+      <h3>Agree on the problem first.</h3>
+      <p>A precise problem statement saves weeks. I write it in plain language, validate it with stakeholders, and pin it to every wall and doc that follows.</p>
+    </div>
+    <div class="process-step">
+      <span class="step-index">Design</span>
+      <h3>Explore widely, commit quickly.</h3>
+      <p>I sketch fast and share early — ugly prototypes that answer real questions beat polished mockups that assume the answers.</p>
+    </div>
+    <div class="process-step">
+      <span class="step-index">Deliver</span>
+      <h3>Ship, then watch.</h3>
+      <p>Launch is a hypothesis, not a conclusion. I stay close after release, track behavior, and iterate based on what people actually do.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left reveal">
+    <h2>Let's make something <em>worth making.</em></h2>
+  </div>
+  <div class="contact-right reveal">
+    <p>I'm currently exploring new opportunities and always open to interesting conversations. If you have a role, a project, or just want to talk design — reach out directly.</p>
+    <a href="mailto:maya@example.com" class="contact-email">maya@example.com</a>
+    <div class="contact-socials">
+      <a href="#">Twitter</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Dribbble</a>
+      <a href="#">Read.cv</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2024 Maya Chen</span>
+  <span>Designed in San Francisco · Built in the browser</span>
+</footer>
+
+<script>
+// Custom cursor
+const cur = document.getElementById('cur');
+let mx = 0, my = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx + 'px';
+  cur.style.top = my + 'px';
+});
+document.querySelectorAll('p, h1, h2, h3').forEach(el => {
+  el.addEventListener('mouseenter', () => cur.classList.add('on-text'));
+  el.addEventListener('mouseleave', () => cur.classList.remove('on-text'));
+});
+document.querySelectorAll('a, button, .project-row').forEach(el => {
+  el.addEventListener('mouseenter', () => { cur.classList.remove('on-text'); cur.classList.add('on-link'); });
+  el.addEventListener('mouseleave', () => cur.classList.remove('on-link'));
+});
+
+// Scroll reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Stagger project rows
+document.querySelectorAll('.project-row').forEach((row, i) => {
+  row.style.transitionDelay = (i * 0.07) + 's';
+});
+</script>
+</body>
+</html>

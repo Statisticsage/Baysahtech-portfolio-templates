@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nour Khalil — Creative Director</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0a0a0a;
+  --white:#fafafa;
+  --off:#f0ede8;
+  --mid:#888;
+  --rule:rgba(0,0,0,0.1);
+  --accent:#ff3c00;
+  --display:'Syne',sans-serif;
+  --body:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--black);font-family:var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ── LOADER ── */
+#loader{
+  position:fixed;inset:0;background:var(--black);z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity 0.6s ease 0.3s;
+}
+#loader.gone{opacity:0;pointer-events:none}
+.loader-text{
+  font-family:var(--display);font-size:1.1rem;
+  color:var(--white);letter-spacing:0.2em;text-transform:uppercase;
+  overflow:hidden;
+}
+.loader-fill{
+  display:inline-block;
+  clip-path:inset(0 100% 0 0);
+  animation:load-fill 1.2s cubic-bezier(0.76,0,0.24,1) forwards;
+}
+@keyframes load-fill{to{clip-path:inset(0 0% 0 0)}}
+
+/* ── CURSOR ── */
+.mag{
+  position:fixed;width:80px;height:80px;border-radius:50%;
+  background:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none;z-index:500;
+  transform:translate(-50%,-50%) scale(0);
+  transition:transform 0.3s cubic-bezier(0.16,1,0.3,1),background 0.2s;
+  font-family:var(--display);font-size:0.62rem;font-weight:700;
+  color:white;letter-spacing:0.1em;text-transform:uppercase;
+  mix-blend-mode:normal;
+}
+.mag.visible{transform:translate(-50%,-50%) scale(1)}
+.mag.dark{background:var(--black)}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1.5rem 3rem;
+  display:flex;justify-content:space-between;align-items:center;
+  mix-blend-mode:difference;
+}
+.nav-logo{
+  font-family:var(--display);font-size:1rem;font-weight:800;
+  color:var(--white);text-decoration:none;letter-spacing:-0.01em;
+}
+.nav-r{display:flex;align-items:center;gap:2.5rem}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  font-size:0.78rem;color:var(--white);text-decoration:none;
+  font-weight:400;letter-spacing:0.04em;
+  opacity:0.6;transition:opacity 0.2s;
+}
+.nav-links a:hover{opacity:1}
+.nav-avail{
+  font-size:0.72rem;color:var(--white);
+  display:flex;align-items:center;gap:0.5rem;opacity:0.6;
+}
+.avail-dot{width:6px;height:6px;border-radius:50%;background:#22c55e}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;
+  background:var(--black);
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  padding:0 3rem 4rem;
+  position:relative;overflow:hidden;
+}
+.hero-bg-text{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:var(--display);
+  font-size:clamp(12rem,22vw,22rem);
+  font-weight:800;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(255,255,255,0.04);
+  white-space:nowrap;
+  pointer-events:none;
+  user-select:none;
+  letter-spacing:-0.05em;
+}
+.hero-content{position:relative;z-index:1}
+.hero-top{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:1.5rem;
+}
+.hero-label{
+  font-size:0.72rem;color:rgba(255,255,255,0.4);
+  letter-spacing:0.15em;text-transform:uppercase;
+}
+.hero-index{
+  font-family:var(--display);
+  font-size:0.72rem;color:rgba(255,255,255,0.3);
+  letter-spacing:0.1em;
+}
+h1{
+  font-family:var(--display);
+  font-size:clamp(4rem,10vw,10rem);
+  font-weight:800;
+  color:var(--white);
+  line-height:0.9;
+  letter-spacing:-0.04em;
+  margin-bottom:2.5rem;
+}
+h1 .em-line{
+  display:block;
+  -webkit-text-stroke:1px var(--white);
+  color:transparent;
+}
+.hero-bottom{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(255,255,255,0.1);
+  padding-top:2rem;
+}
+.hero-desc{
+  max-width:380px;
+  font-size:0.9rem;color:rgba(255,255,255,0.5);
+  line-height:1.8;
+}
+.hero-desc strong{color:rgba(255,255,255,0.85);font-weight:400}
+.hero-scroll-hint{
+  font-size:0.72rem;color:rgba(255,255,255,0.3);
+  display:flex;align-items:center;gap:1rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+}
+.hero-scroll-hint::after{
+  content:'↓';font-size:1rem;
+  animation:bounce 2s ease-in-out infinite;
+}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ── WORK ── */
+#work{padding:0}
+.work-intro{
+  padding:5rem 3rem;
+  display:flex;justify-content:space-between;align-items:flex-end;
+  border-bottom:1px solid var(--rule);
+}
+.work-intro h2{
+  font-family:var(--display);
+  font-size:clamp(2.5rem,5vw,4rem);
+  font-weight:800;letter-spacing:-0.03em;
+  line-height:1;
+}
+.work-intro p{
+  max-width:320px;font-size:0.85rem;
+  color:var(--mid);line-height:1.8;
+}
+
+/* case study rows */
+.case-item{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:80vh;border-bottom:1px solid var(--rule);
+  cursor:none;overflow:hidden;
+}
+.case-item.flip{direction:rtl}
+.case-item.flip > *{direction:ltr}
+.case-img{
+  position:relative;overflow:hidden;
+  background:var(--off);
+}
+.case-img-inner{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.case-item:hover .case-img-inner{transform:scale(1.04)}
+.case-placeholder{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:0.7rem;
+  letter-spacing:0.2em;color:rgba(0,0,0,0.2);text-transform:uppercase;
+}
+.case-body{
+  padding:4rem 3.5rem;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+  background:var(--white);
+}
+.case-num{
+  font-family:var(--display);
+  font-size:0.68rem;color:var(--mid);
+  letter-spacing:0.15em;margin-bottom:auto;
+}
+.case-main{margin:auto 0}
+.case-tags{
+  display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem;
+}
+.case-tag{
+  font-size:0.68rem;padding:0.25rem 0.7rem;
+  border:1px solid var(--rule);border-radius:100px;
+  color:var(--mid);letter-spacing:0.05em;
+}
+.case-body h3{
+  font-family:var(--display);
+  font-size:clamp(1.8rem,3vw,2.8rem);
+  font-weight:800;letter-spacing:-0.03em;
+  line-height:1.05;margin-bottom:1.2rem;
+}
+.case-body p{
+  font-size:0.88rem;color:var(--mid);
+  line-height:1.8;max-width:400px;margin-bottom:2rem;
+}
+.case-link{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  font-family:var(--display);font-size:0.78rem;
+  font-weight:700;color:var(--black);text-decoration:none;
+  letter-spacing:0.05em;text-transform:uppercase;
+  border-bottom:2px solid var(--black);
+  padding-bottom:0.2rem;
+  transition:color 0.2s,border-color 0.2s;
+}
+.case-link:hover{color:var(--accent);border-color:var(--accent)}
+.case-meta{
+  display:flex;gap:3rem;
+  padding-top:2rem;border-top:1px solid var(--rule);
+}
+.meta-item{}
+.meta-label{font-size:0.65rem;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.25rem}
+.meta-val{font-size:0.85rem;font-weight:500}
+
+/* ── ABOUT ── */
+#about{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:70vh;
+}
+.about-img{
+  background:var(--black);
+  display:flex;align-items:flex-end;
+  padding:3rem;overflow:hidden;position:relative;
+}
+.about-img-text{
+  font-family:var(--display);
+  font-size:clamp(5rem,12vw,12rem);
+  font-weight:800;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(255,255,255,0.08);
+  line-height:0.9;letter-spacing:-0.05em;
+  position:absolute;top:50%;left:3rem;transform:translateY(-50%);
+}
+.about-card{
+  background:var(--off);
+  padding:4rem 3.5rem;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.about-eyebrow{
+  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--mid);margin-bottom:2rem;
+}
+.about-card h2{
+  font-family:var(--display);
+  font-size:clamp(1.8rem,3vw,2.8rem);
+  font-weight:800;letter-spacing:-0.03em;
+  line-height:1.05;margin-bottom:1.5rem;
+}
+.about-card p{
+  font-size:0.9rem;color:#555;
+  line-height:1.85;margin-bottom:1rem;
+}
+.about-card p strong{color:var(--black);font-weight:500}
+.about-row{
+  display:flex;justify-content:space-between;
+  padding:0.75rem 0;border-top:1px solid rgba(0,0,0,0.08);
+  font-size:0.82rem;
+}
+.about-row:last-child{border-bottom:1px solid rgba(0,0,0,0.08)}
+.about-row span:first-child{color:var(--mid)}
+.about-row span:last-child{font-weight:500}
+
+/* ── SERVICES ── */
+#services{
+  padding:5rem 3rem;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.services-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:3rem;
+}
+.services-header h2{
+  font-family:var(--display);font-size:2rem;font-weight:800;
+  letter-spacing:-0.02em;
+}
+.service-list{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;border:1px solid var(--rule);
+}
+.service-item{
+  padding:2.5rem 2rem;border-right:1px solid var(--rule);
+  transition:background 0.3s;
+}
+.service-item:last-child{border-right:none}
+.service-item:hover{background:var(--black);color:var(--white)}
+.service-item:hover .service-num,.service-item:hover .service-desc{color:rgba(255,255,255,0.4)}
+.service-item:hover .service-name{color:var(--white)}
+.service-num{
+  font-family:var(--display);font-size:0.65rem;
+  color:var(--mid);letter-spacing:0.15em;
+  margin-bottom:2rem;display:block;transition:color 0.3s;
+}
+.service-name{
+  font-family:var(--display);font-size:1.3rem;font-weight:700;
+  letter-spacing:-0.02em;margin-bottom:0.75rem;transition:color 0.3s;
+}
+.service-desc{
+  font-size:0.82rem;color:var(--mid);line-height:1.7;transition:color 0.3s;
+}
+
+/* ── CONTACT ── */
+#contact{
+  padding:6rem 3rem;
+  background:var(--black);color:var(--white);
+  text-align:center;
+}
+#contact h2{
+  font-family:var(--display);
+  font-size:clamp(3rem,8vw,8rem);
+  font-weight:800;letter-spacing:-0.04em;
+  line-height:0.9;margin-bottom:2.5rem;
+}
+#contact h2 .outline{
+  -webkit-text-stroke:1px var(--white);color:transparent;
+}
+.contact-sub{
+  font-size:0.9rem;color:rgba(255,255,255,0.4);
+  max-width:400px;margin:0 auto 3rem;line-height:1.8;
+}
+.contact-actions{
+  display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:4rem;
+}
+.btn-white{
+  padding:1rem 2.5rem;
+  background:var(--white);color:var(--black);
+  font-family:var(--display);font-size:0.8rem;font-weight:700;
+  letter-spacing:0.05em;text-transform:uppercase;
+  text-decoration:none;
+  transition:background 0.2s,color 0.2s,transform 0.2s;
+}
+.btn-white:hover{background:var(--accent);color:white;transform:translateY(-3px)}
+.btn-ghost{
+  padding:1rem 2.5rem;
+  background:transparent;color:var(--white);
+  border:1px solid rgba(255,255,255,0.2);
+  font-family:var(--display);font-size:0.8rem;font-weight:700;
+  letter-spacing:0.05em;text-transform:uppercase;
+  text-decoration:none;
+  transition:border-color 0.2s,transform 0.2s;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.6);transform:translateY(-3px)}
+.contact-socials{
+  display:flex;gap:3rem;justify-content:center;
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding-top:3rem;
+}
+.contact-socials a{
+  font-size:0.75rem;color:rgba(255,255,255,0.3);
+  text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;
+  transition:color 0.2s;
+}
+.contact-socials a:hover{color:var(--white)}
+
+/* ── FOOTER ── */
+footer{
+  padding:1.5rem 3rem;
+  background:var(--black);
+  border-top:1px solid rgba(255,255,255,0.06);
+  display:flex;justify-content:space-between;
+  font-size:0.7rem;color:rgba(255,255,255,0.2);
+  font-family:var(--display);letter-spacing:0.05em;
+}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  nav{padding:1.2rem 1.5rem}
+  .nav-links,.nav-avail{display:none}
+  #hero{padding:0 1.5rem 3rem}
+  h1{font-size:clamp(3.5rem,15vw,6rem)}
+  .hero-bottom{flex-direction:column;gap:2rem;align-items:flex-start}
+  .work-intro{flex-direction:column;gap:1.5rem;padding:3rem 1.5rem}
+  .case-item,.case-item.flip{grid-template-columns:1fr;direction:ltr}
+  .case-img{min-height:50vw}
+  .case-body{padding:2.5rem 1.5rem}
+  #about{grid-template-columns:1fr}
+  .about-img{display:none}
+  .about-card{padding:3rem 1.5rem}
+  #services{padding:3rem 1.5rem}
+  .service-list{grid-template-columns:1fr}
+  .service-item{border-right:none;border-bottom:1px solid var(--rule)}
+  #contact{padding:4rem 1.5rem}
+  .contact-socials{gap:1.5rem;flex-wrap:wrap}
+  footer{padding:1.2rem 1.5rem;flex-direction:column;gap:0.4rem}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-text"><span class="loader-fill">NOUR KHALIL</span></div>
+</div>
+
+<!-- CURSOR MAGNET -->
+<div class="mag" id="mag">View</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">NK Studio</a>
+  <div class="nav-r">
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-avail">
+      <div class="avail-dot"></div>
+      Available for projects
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-text">STUDIO</div>
+  <div class="hero-content">
+    <div class="hero-top">
+      <div class="hero-label">Creative Director & Brand Strategist</div>
+      <div class="hero-index">Est. 2018 · Dubai / Remote</div>
+    </div>
+    <h1>
+      Nour<br>
+      <span class="em-line">Khalil</span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">
+        I build <strong>brand identities and digital experiences</strong> that leave a mark. Strategy-led, craft-obsessed, and deeply collaborative — from concept to final pixel.
+      </p>
+      <div class="hero-scroll-hint">Scroll to explore</div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="work-intro reveal">
+    <h2>Selected<br>Projects</h2>
+    <p>A curated look at brand, web, and campaign work from the past five years. Each project is an original engagement — no templates, no shortcuts.</p>
+  </div>
+
+  <div class="case-item" data-mag="View">
+    <div class="case-img">
+      <div class="case-img-inner">
+        <div class="case-placeholder" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+          <span style="color:rgba(255,255,255,0.15)">Project Image</span>
+        </div>
+      </div>
+    </div>
+    <div class="case-body reveal">
+      <div class="case-num">01 / 04</div>
+      <div class="case-main">
+        <div class="case-tags">
+          <span class="case-tag">Brand Identity</span>
+          <span class="case-tag">Web Design</span>
+          <span class="case-tag">Art Direction</span>
+        </div>
+        <h3>Luminos — Sustainable Lighting Brand</h3>
+        <p>Complete brand system for a Dubai-based luxury lighting startup. Identity, packaging, website, and campaign across 4 markets. Launched Q1 2024.</p>
+        <a href="#" class="case-link">View Case Study →</a>
+      </div>
+      <div class="case-meta">
+        <div class="meta-item"><div class="meta-label">Year</div><div class="meta-val">2024</div></div>
+        <div class="meta-item"><div class="meta-label">Scope</div><div class="meta-val">Brand + Web</div></div>
+        <div class="meta-item"><div class="meta-label">Client</div><div class="meta-val">Luminos Inc.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-item flip" data-mag="View">
+    <div class="case-img">
+      <div class="case-img-inner">
+        <div class="case-placeholder" style="background:linear-gradient(135deg,#1a0a00,#3d1a00)">
+          <span style="color:rgba(255,255,255,0.1)">Project Image</span>
+        </div>
+      </div>
+    </div>
+    <div class="case-body reveal">
+      <div class="case-num">02 / 04</div>
+      <div class="case-main">
+        <div class="case-tags">
+          <span class="case-tag">Campaign</span>
+          <span class="case-tag">Motion</span>
+          <span class="case-tag">OOH</span>
+        </div>
+        <h3>Hariri Coffee — Regional Rebrand</h3>
+        <p>Repositioned a 40-year-old Lebanese coffee brand for a younger audience without losing its heritage. Visual identity, campaign rollout, and 3 regional market launches.</p>
+        <a href="#" class="case-link">View Case Study →</a>
+      </div>
+      <div class="case-meta">
+        <div class="meta-item"><div class="meta-label">Year</div><div class="meta-val">2023</div></div>
+        <div class="meta-item"><div class="meta-label">Scope</div><div class="meta-val">Brand + Campaign</div></div>
+        <div class="meta-item"><div class="meta-label">Client</div><div class="meta-val">Hariri Group</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-item" data-mag="View">
+    <div class="case-img">
+      <div class="case-img-inner">
+        <div class="case-placeholder" style="background:linear-gradient(135deg,#0a1a0a,#0f3a0f)">
+          <span style="color:rgba(255,255,255,0.1)">Project Image</span>
+        </div>
+      </div>
+    </div>
+    <div class="case-body reveal">
+      <div class="case-num">03 / 04</div>
+      <div class="case-main">
+        <div class="case-tags">
+          <span class="case-tag">Digital Experience</span>
+          <span class="case-tag">UX</span>
+        </div>
+        <h3>Verdant — Agritech Platform</h3>
+        <p>End-to-end UX and visual design for a B2B agricultural data platform. Synthesized complex sensor data into a calm, actionable dashboard used by 800+ farm operators.</p>
+        <a href="#" class="case-link">View Case Study →</a>
+      </div>
+      <div class="case-meta">
+        <div class="meta-item"><div class="meta-label">Year</div><div class="meta-val">2023</div></div>
+        <div class="meta-item"><div class="meta-label">Scope</div><div class="meta-val">UX + Visual</div></div>
+        <div class="meta-item"><div class="meta-label">Client</div><div class="meta-val">Verdant Labs</div></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-img">
+    <div class="about-img-text">NK</div>
+  </div>
+  <div class="about-card reveal">
+    <div class="about-eyebrow">About the studio</div>
+    <h2>Independent. Intentional. Craft-first.</h2>
+    <p>NK Studio is a <strong>one-person creative practice</strong> based in Dubai. I work with founders, CMOs, and product teams who believe that design is a business decision, not a finishing touch.</p>
+    <p>My process is collaborative by nature — I embed with your team, ask uncomfortable questions, and push for clarity before I ever open Figma.</p>
+    <div class="about-row"><span>Availability</span><span style="color:#22c55e">Open — Q3 2024</span></div>
+    <div class="about-row"><span>Location</span><span>Dubai · Remote worldwide</span></div>
+    <div class="about-row"><span>Languages</span><span>English · Arabic · French</span></div>
+    <div class="about-row"><span>Rate</span><span>On request</span></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <h2>What I do</h2>
+  </div>
+  <div class="service-list reveal">
+    <div class="service-item">
+      <span class="service-num">01</span>
+      <div class="service-name">Brand Identity</div>
+      <p class="service-desc">Logo, visual system, typography, color, tone of voice — everything a brand needs to own a room and be remembered.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-num">02</span>
+      <div class="service-name">Web Design</div>
+      <p class="service-desc">Marketing sites, product pages, and digital experiences that convert visitors and represent the brand at its best.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-num">03</span>
+      <div class="service-name">Art Direction</div>
+      <p class="service-desc">Campaign concepts, photography direction, and creative strategy for brands that need a clear, powerful visual voice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="reveal">
+    Start a<br><span class="outline">Project</span>
+  </h2>
+  <p class="contact-sub">Have a project in mind? I'd love to hear about it. I take on 2–3 projects per quarter and give each one my full attention.</p>
+  <div class="contact-actions">
+    <a href="mailto:nour@example.com" class="btn-white">nour@example.com</a>
+    <a href="#" class="btn-ghost">Book a Call</a>
+  </div>
+  <div class="contact-socials">
+    <a href="#">Instagram</a>
+    <a href="#">Behance</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">Twitter / X</a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2024 NK Studio</span>
+  <span>Dubai · UAE</span>
+</footer>
+
+<script>
+// Loader
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('gone'), 1200);
+});
+
+// Magnetic cursor
+const mag = document.getElementById('mag');
+let cx = 0, cy = 0, tx = 0, ty = 0;
+document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+function animMag() {
+  cx += (tx - cx) * 0.1; cy += (ty - cy) * 0.1;
+  mag.style.left = cx + 'px'; mag.style.top = cy + 'px';
+  requestAnimationFrame(animMag);
+}
+animMag();
+document.querySelectorAll('.case-item').forEach(el => {
+  el.addEventListener('mouseenter', () => mag.classList.add('visible'));
+  el.addEventListener('mouseleave', () => mag.classList.remove('visible'));
+});
+
+// Reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
